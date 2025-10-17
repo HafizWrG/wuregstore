@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wureg Store - Digital Shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+
+
+</head>
+<body class="text-gray-300">
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-40 w-full backdrop-blur flex-none transition-colors duration-500 lg:z-50 border-b border-purple-500/20 bg-black/50">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="Index.html" class="text-2xl font-orbitron font-bold tracking-widest bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-500 to-red-500">
+                        WUREG STORE
+                    </a>
+                </div>
+
+                <!-- Search Bar (Desktop) -->
+                <div class="relative hidden sm:block w-full max-w-xs">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <i data-lucide="search" class="w-5 h-5 text-neutral-500"></i>
+                    </div>
+                    <input type="search" id="search-input" placeholder="Cari produk..." class="w-full bg-neutral-900 border border-neutral-800 rounded-lg pl-10 pr-4 py-2 text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 transition-all">
+                </div>
+                
+                <!-- Nav Links & Cart -->
+                <div class="flex items-center space-x-2 md:space-x-4">
+                    <a href="#" id="store-link" class="text-neutral-400 hover:text-fuchsia-400 transition-colors hidden md:block px-3 py-2 rounded-md text-sm font-medium">Store</a>
+                    <a href="#" id="posts-link" class="text-neutral-400 hover:text-fuchsia-400 transition-colors hidden md:block px-3 py-2 rounded-md text-sm font-medium">Postingan</a>
+                    <button class="relative p-2 rounded-full text-neutral-400 hover:text-white hover:bg-neutral-800 transition-colors">
+                        <i data-lucide="shopping-cart" class="w-6 h-6"></i>
+                        <span class="absolute top-1 right-1 block h-2 w-2 rounded-full bg-fuchsia-500 ring-2 ring-black"></span>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile Search Bar -->
+            <div class="sm:hidden pb-4">
+            <div class="relative w-full">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <i data-lucide="search" class="w-5 h-5 text-neutral-500"></i>
+                    </div>
+                    <input type="search" id="search-input-mobile" placeholder="Cari produk..." class="w-full bg-neutral-900 border border-neutral-800 rounded-lg pl-10 pr-4 py-2 text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 transition-all">
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- === HALAMAN TOKO (STORE PAGE) === -->
+    <div id="store-page" class="container mx-auto px-4 py-8 md:py-12">
+
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight font-orbitron">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-500 via-purple-500 to-violet-500">
+                    WURE<span class="text-fuchsia-400">G</span> STORE
+                </span>
+            </h1>
+            <p class="mt-2 text-lg text-neutral-400">Murah Meriah dan Berkualitas</p>
+        </header>
+
+
+        <!-- Bagian Produk -->
+        <main>
+            <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-4">
+                
+<!-- Produk 1 -->
+                <div class="product-card transition-all duration-300 hover:shadow-fuchsia-500/20 hover:-translate-y-1 hover:border-fuchsia-500/50">
+                    <img src="Image/2024.jpg" alt="Gambar produk digital" class="Adobe-2024" loading="lazy" decoding="async">
+                    <div class="p-5"><h3 class="text-xl font-bold text-white">Adobe Pack 2024</h3>
+                    <p class="text-neutral-400 mt-2 text-sm h-16">Adobe Studio Pack yang berisi: Premiere Pro, After Effect, Audition, PhotoShop dan Illustrator</p>
+                    <div class="flex justify-between items-center mt-4"><span class="text-2xl font-bold text-fuchsia-400">Rp 17.000</span>
+                    <button onclick="openPaymentModal('Adobe Pack 2025 \'4 Softwware\'', 'Rp 17.000')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40">Beli</button></div></div></div>
+<!-- Produk 2 -->
+                <div class="product-card transition-all duration-300 hover:shadow-fuchsia-500/20 hover:-translate-y-1 hover:border-fuchsia-500/50">
+                    <img src="Image/ACMirage.jpg" alt="Gambar produk digital" class="Adobe-2024" loading="lazy" decoding="async">
+                    <div class="p-5"><h3 class="text-xl font-bold text-white">Assasin Creed: Mirage</h3>
+                    <p class="text-neutral-400 mt-2 text-sm h-16">game adventure yang berpeta baghdad dan pada era the golden age of islam</p>
+                    <div class="flex justify-between items-center mt-4"><span class="text-2xl font-bold text-fuchsia-400">Rp 7.000</span>
+                    <button onclick="openPaymentModal('ACMirage \'\'', 'Rp 7.000')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40">Beli</button></div></div></div>
+<!-- Produk 3 -->
+                <div class="product-card transition-all duration-300 hover:shadow-fuchsia-500/20 hover:-translate-y-1 hover:border-fuchsia-500/50">
+                    <img src="Image/2025.jpg" alt="Gambar produk digital" class="Adobe-2024" loading="lazy" decoding="async">
+                    <div class="p-5"><h3 class="text-xl font-bold text-white">Adobe Pack 2025</h3>
+                    <p class="text-neutral-400 mt-2 text-sm h-16">berisikan 3 software adobe: PhotoShop, After Effect dan Premiere Pro</p>
+                    <div class="flex justify-between items-center mt-4"><span class="text-2xl font-bold text-fuchsia-400">Rp 7.000</span>
+                    <button onclick="openPaymentModal('ACMirage \'\'', 'Rp 7.000')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40">Beli</button></div></div></div>
+<!-- Produk 4 -->
+                <div class="product-card transition-all duration-300 hover:shadow-fuchsia-500/20 hover:-translate-y-1 hover:border-fuchsia-500/50">
+                    <img src="https://cdn.iconscout.com/icon/free/png-256/minecraft-2752120-2284937.png" alt="Gambar produk digital" class="Adobe-2024" loading="lazy" decoding="async">
+                    <div class="p-5"><h3 class="text-xl font-bold text-white">Minecraft PlayStore</h3>
+                    <p class="text-neutral-400 mt-2 text-sm h-16">akun sharing minecraft Playstore</p>
+                    <div class="flex justify-between items-center mt-4"><span class="text-2xl font-bold text-fuchsia-400">Rp 5.000</span>
+                    <button onclick="openPaymentModal('Minecraft \'PS Login\'', 'Rp 5.000')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40">Beli</button></div></div></div>
+<!-- Produk 5 -->
+                <div class="product-card transition-all duration-300 hover:shadow-fuchsia-500/20 hover:-translate-y-1 hover:border-fuchsia-500/50">
+                    <img src="https://down-id.img.susercontent.com/file/id-11134207-7qul5-lk4njjx4zp3sf8" alt="Gambar produk digital" class="idm" loading="lazy" decoding="async">
+                    <div class="p-5"><h3 class="text-xl font-bold text-white">Idm Activ Script</h3>
+                    <p class="text-neutral-400 mt-2 text-sm h-16">Internet download manager activator yang berfungsi di semua versi, Up to date dari web resmi juga bisa</p>
+                    <div class="flex justify-between items-center mt-4"><span class="text-2xl font-bold text-fuchsia-400">Rp 5.000</span>
+                    <button onclick="openPaymentModal('IDM ACtivator \' All Ver\'', 'Rp 5.000')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40">Beli</button></div></div></div>
+<!-- CODMW -->
+                <div class="product-card transition-all duration-300 hover:shadow-fuchsia-500/20 hover:-translate-y-1 hover:border-fuchsia-500/50">
+                    <img src="https://game-experience.it/wp-content/uploads/2019/10/Call-Of-Duty-Modern-Warfare-.jpeg" alt="Gambar produk digital" class="COD" loading="lazy" decoding="async">
+                    <div class="p-5"><h3 class="text-xl font-bold text-white">Call Of Duty: Modern Warfare 2019</h3>
+                    <p class="text-neutral-400 mt-2 text-sm h-16">File Torrent dan Repack, berfungsi dengan baik</p>
+                    <div class="flex justify-between items-center mt-4"><span class="text-2xl font-bold text-fuchsia-400">Rp 8.000</span>
+                    <button onclick="openPaymentModal('CODMW2019 \'\'', 'Rp 8.000')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40">Beli</button></div></div></div>
+
+
+<!-- Search -->
+            </div>
+            <div id="no-results" class="hidden text-center py-16">
+                <i data-lucide="swords" class="w-16 h-16 mx-auto text-neutral-600 mb-4"></i>
+                <h3 class="text-2xl font-bold text-white font-orbitron">ITEM TIDAK DITEMUKAN</h3>
+                <p class="text-neutral-400 mt-2">Coba gunakan kata kunci lain untuk mencari.</p>
+            </div>
+        </main>
+
+<!-- Footer -->
+        <footer class="text-center mt-16 text-neutral-500"><div class="flex justify-center items-center space-x-6 mb-4">
+<!-- WhatsApp -->
+                <a href="https://wa.me/6281528483575" aria-label="WhatsApp" class="text-neutral-400 hover:text-fuchsia-400 transition-colors"><i data-lucide="message-circle" class="w-6 h-6"></i></a>
+<!-- Instagram -->
+                <a href="https://www.instagram.com/hfz.wrg/" aria-label="Instagram" class="text-neutral-400 hover:text-fuchsia-400 transition-colors"><i data-lucide="instagram" class="w-6 h-6"></i></a>
+<!-- TikTok -->
+                <a href="https://www.tiktok.com/@minn_edzzt" aria-label="TikTok" class="text-neutral-400 hover:text-fuchsia-400 transition-colors"><i data-lucide="video" class="w-6 h-6"></i></a>
+<!-- YouTube -->
+                <a href="https://www.youtube.com/@HAFIZWRG" aria-label="YouTube" class="text-neutral-400 hover:text-fuchsia-400 transition-colors"><i data-lucide="youtube" class="w-6 h-6"></i></a>
+<!-- Twitter -->
+                <a href="https://x.com/EdtzMinn" aria-label="Twitter" class="text-neutral-400 hover:text-fuchsia-400 transition-colors"><i data-lucide="twitter" class="w-6 h-6"></i></a>
+            </div>
+            <p>&copy; 2025 Hafiz Wrg. All Rights Reserved.</p>
+        </footer>
+
+    </div>
+
+    <!-- === HALAMAN POSTINGAN (POSTS PAGE) === -->
+    <div id="posts-page" class="hidden container mx-auto px-4 py-8 md:py-12">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight font-orbitron">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-blue-500">
+                    POSTINGAN
+                </span>
+            </h1>
+            <p class="mt-2 text-lg text-neutral-400">Berita terbaru dan update dari Wureg Store.</p>
+        </header>
+
+        <main>
+            <div id="post-list" class="space-y-8">
+                <!-- Postingan akan dimuat di sini -->
+                <div class="text-center py-16">
+                    <i data-lucide="construction" class="w-16 h-16 mx-auto text-neutral-600 mb-4"></i>
+                    <h3 class="text-2xl font-bold text-white font-orbitron">SEGERA HADIR</h3>
+                    <p class="text-neutral-400 mt-2">Halaman postingan sedang dalam pengembangan.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal Pembayaran -->
+    <div id="payment-modal" class="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden modal-enter">
+        <div id="modal-content" class="bg-neutral-900 border border-neutral-800 rounded-2xl shadow-2xl p-6 md:p-8 w-full max-w-md relative transition-transform duration-300 gamer-border-glow">
+            <!-- Tombol Close -->
+            <button onclick="closePaymentModal()" class="absolute top-4 right-4 text-neutral-500 hover:text-white transition-colors">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+
+            <!-- Konten Modal -->
+            <h2 class="text-2xl font-bold text-white mb-2 font-orbitron">CHECKOUT</h2>
+            <p class="text-neutral-400 mb-4">Item yang akan dibeli: <strong id="modal-product-name" class="text-fuchsia-400"></strong></p>
+            
+            <div class="bg-black/50 rounded-lg p-4 mb-6 border border-neutral-800">
+                <div class="flex justify-between items-center">
+                    <span class="text-neutral-400">Total Pembayaran</span>
+                    <span id="modal-product-price" class="text-2xl font-bold text-white"></span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                <button onclick="selectPaymentMethod('whatsapp')" class="w-full bg-green-500 text-white font-bold py-3 rounded-lg hover:bg-green-600 transition-all duration-300 flex items-center justify-center gap-2 payment-method-btn" id="btn-whatsapp">
+                    <i data-lucide="message-circle" class="w-5 h-5"></i>
+                    WhatsApp
+                </button>
+                <button onclick="lynk()" class="w-full bg-red-200 text-black font-bold py-3 rounded-lg hover:bg-gray-300 transition-all duration-300 flex items-center justify-center gap-2 payment-method-btn" id="btn-lynk">
+                    <i data-lucide="link" class="w-5 h-5"></i>
+                    Lynk Web
+                </button>
+                <button onclick="selectPaymentMethod('qris')" class="w-full bg-gray-200 text-black font-bold py-3 rounded-lg hover:bg-gray-300 transition-all duration-300 flex items-center justify-center gap-2 payment-method-btn" id="btn-qris">
+                    <i data-lucide="qr-code" class="w-5 h-5"></i>
+                    QRIS
+                </button>
+                <button onclick="selectPaymentMethod('dana')" class="w-full bg-blue-500 text-white font-bold py-3 rounded-lg hover:bg-blue-600 transition-all duration-300 flex items-center justify-center gap-2 payment-method-btn" id="btn-dana">
+                    <i data-lucide="credit-card" class="w-5 h-5"></i>
+                    DANA
+                </button>
+                <button onclick="selectPaymentMethod('im3')" class="w-full bg-yellow-500 text-white font-bold py-3 rounded-lg hover:bg-yellow-600 transition-all duration-300 flex items-center justify-center gap-2 payment-method-btn" id="btn-im3">
+                    <i data-lucide="smartphone" class="w-5 h-5"></i>
+                    IM3
+                </button>
+            </div>
+
+            <!-- Detail Pembayaran -->
+            <div id="payment-instructions" class="hidden mt-6">
+                <div id="dana-details" class="payment-details hidden bg-black/50 p-4 rounded-lg border border-neutral-800">
+                    <p class="text-neutral-300">Silakan transfer ke nomor DANA berikut:</p>
+                    <p class="text-xl font-bold text-white mt-2">0815-2848-3575</p>
+                    <p class="text-sm text-neutral-400 mt-1">a/n Hafiz Wirang</p>
+                </div>
+                <div id="qris-details" class="payment-details hidden bg-black/50 p-4 rounded-lg border border-neutral-800 text-center">
+                    <p class="text-neutral-300 mb-2">Belum Tersedia</p>
+                    <img src="" alt="QRIS Code" class="w-48 h-48 mx-auto rounded-lg">
+                </div>
+                <div id="im3-details" class="payment-details hidden bg-black/50 p-4 rounded-lg border border-neutral-800">
+                    <p class="text-neutral-300">Silakan transfer pulsa ke nomor IM3 berikut:</p>
+                    <p class="text-xl font-bold text-white mt-2">0815-2848-3575</p>
+                    <p class="text-neutral-300">kirim bukti ke whatsapp admin</p>
+                </div>
+                <div id="lynk-details" class="payment-details hidden bg-black/50 p-4 rounded-lg border border-neutral-800">
+                    <p class="text-neutral-300">Anda akan diarahkan ke website pembayaran kami.</p>
+                </div>
+            </div>
+
+            <button onclick="confirmOrder()" class="w-full mt-6 bg-fuchsia-600 text-white font-bold py-3 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 flex items-center justify-center gap-2">
+                Konfirmasi Pembayaran
+            </button>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast-notification" class="fixed bottom-5 right-5 bg-red-500 text-white py-2 px-4 rounded-lg shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 z-50">
+        <p id="toast-message"></p>
+    </div>
+    <script src="Base.js" defer></script>
+
+
+</body>
+</html>

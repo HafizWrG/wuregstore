@@ -1,0 +1,77 @@
+/* Menggunakan font Inter sebagai default, Orbitron untuk header */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #000000; /* Warna dasar hitam pekat */
+    /* Background pattern grid khas gamer */
+    background-image: url('Image/Bg.jpg');
+    background-size: 80rem;
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    border-radius: 25px;
+    border-width: 3.5px;
+    border-color: rgb(12, 12, 12);
+    border-style: solid;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.31);
+}
+
+
+.font-orbitron {
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #171717; /* neutral-900 */
+}
+::-webkit-scrollbar-thumb {
+    background: #011676; /* purple-500 */
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #310162; /* purple-400 */
+}
+
+/* Animasi untuk modal */
+.modal-enter {
+    opacity: 0;
+    transform: scale(1.95) translateY(10px);
+}
+.modal-enter-active {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    transition: opacity 300ms, transform 300ms;
+}
+.modal-leave {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+.modal-leave-active {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+    transition: opacity 300ms, transform 300ms;
+}
+
+/* Efek glow untuk border */
+.gamer-border-glow {
+    border: 1px solid #980000; /* violet-900 */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+}
+
+
+@media (max-width: 600px) {
+
+    html .product-card{
+        align-items:stretch;
+        scale: 95%;
+    }
+}
