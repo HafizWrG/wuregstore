@@ -12,10 +12,11 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    backdrop-filter: blur(10px);
+    color: rgba(0, 0, 0, 0.0);
+    backdrop-filter: blur(3px);
     border-radius: 25px;
     border-width: 3.5px;
-    border-color: rgb(12, 12, 12);
+    border-color: rgba(12, 12, 12);
     border-style: solid;
     overflow: hidden;
     background-color: rgba(0, 0, 0, 0.31);
