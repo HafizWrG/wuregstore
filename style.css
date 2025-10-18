@@ -21,6 +21,10 @@ body {
     background-color: rgba(0, 0, 0, 0.31);
 }
 
+.tobrut {
+    display: fixed;
+    justify-content: space-between;
+}
 
 .font-orbitron {
     font-family: 'Orbitron', sans-serif;
@@ -75,3 +79,4 @@ body {
         scale: 95%;
     }
 }
+
