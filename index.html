@@ -239,19 +239,19 @@
             </h1>
             <p class="mt-2 text-lg text-neutral-400">Berita terbaru dan update dari Wureg Store.</p>
         </header>
-
+        
         <main>
             <div id="post-list" class="space-y-8">
-                <!-- Postingan akan dimuat di sini -->
-                <div class="text-center py-16">
-                    <i data-lucide="construction" class="w-16 h-16 mx-auto text-neutral-600 mb-4"></i>
-                    <h3 class="text-2xl font-bold text-white font-orbitron">SEGERA HADIR</h3>
-                    <p class="text-neutral-400 mt-2">Halaman postingan sedang dalam pengembangan.</p>
-                </div>
+                <!--- Produk 1 -->
+                    <div class="product-card transition-all duration-300 hover:shadow-fuchsia-500/20 hover:-translate-y-1 hover:border-fuchsia-500/50">
+                    <div class="p-5"><h3 class="text-xl font-bold text-white">Kalkulator Pecahan</h3>
+                    <p class="text-neutral-400 mt-2 text-sm h-16">ini adalah salah satu project java yang gw bikin kemudian gw convert ke Js biar bisa jadi website gw minta bantuan Ai untuk visual</p>
+                    <button onclick="window.open('https://hafizwrg.github.io/retool/', '_blank')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40"></i>Buka</button>
+                </div></div></div>
             </div>
         </main>
     </div>
-
+    
     <!-- Modal Pembayaran -->
     <div id="payment-modal" class="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden modal-enter">
         <div id="modal-content" class="bg-neutral-900 border border-neutral-800 rounded-2xl shadow-2xl p-6 md:p-8 w-full max-w-md relative transition-transform duration-300 gamer-border-glow">
@@ -259,7 +259,7 @@
             <button onclick="closePaymentModal()" class="absolute top-4 right-4 text-neutral-500 hover:text-white transition-colors">
                 <i data-lucide="x" class="w-6 h-6"></i>
             </button>
-
+            
             <!-- Konten Modal -->
             <h2 class="text-2xl font-bold text-white mb-2 font-orbitron">CHECKOUT</h2>
             <p class="text-neutral-400 mb-4">Item yang akan dibeli: <strong id="modal-product-name" class="text-fuchsia-400"></strong></p>
