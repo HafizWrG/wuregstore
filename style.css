@@ -19,11 +19,24 @@ body {
     border-style: solid;
     overflow: hidden;
     background-color: rgba(0, 0, 0, 0.31);
+    width: clamp(95%, 60%, 100%);
+}
+
+.port {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: rgba(0, 0, 0, 0.0);
+    backdrop-filter: blur(3px);
+    border-radius: 25px;
+    border-width: 3.5px
 }
 
 .tobrut {
-    display: fixed;
+    display: flex;
     justify-content: space-between;
+    align-items: fixed;
+    flex-wrap: wrap;
 }
 
 .font-orbitron {
@@ -69,14 +82,5 @@ body {
 .gamer-border-glow {
     border: 1px solid #980000; /* violet-900 */
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
-}
-
-
-@media (max-width: 600px) {
-
-    html .product-card{
-        align-items:stretch;
-        scale: 95%;
-    }
 }
 
