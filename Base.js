@@ -32,8 +32,8 @@ logoLink.addEventListener('click', (e) => { e.preventDefault(); showPage('store-
 
 
 // Fungsi untuk membuka modal
-function openPaymentModal(productName, price) {
-    modalProductName.textContent = productName;
+function openPaymentModal(product, price) {
+    modalProductName.textContent = product;
     modalProductPrice.textContent = price;
 
     // Reset tampilan modal
@@ -65,11 +65,6 @@ function closePaymentModal() {
 function selectPaymentMethod(method) {
     currentSelectedMethod = method;
 
-    if (method === 'whatsapp' && method === 'lynk') {
-        paymentInstructions.classList.add('hidden');
-        return;
-    }
-
     paymentInstructions.classList.remove('hidden');
     paymentDetails.forEach(detail => detail.classList.add('hidden'));
     document.getElementById(method + '-details').classList.remove('hidden');
@@ -81,45 +76,19 @@ function selectPaymentMethod(method) {
 }
 
 // Fungsi konfirmasi dan simpan pesanan
-function confirmOrder() {
-    if (!currentSelectedMethod) {
-        showToast('Silakan pilih metode pembayaran terlebih dahulu.');
-        return;
-    }
-
-    const newOrder = {
-        id: Date.now(), // ID unik sederhana
-        productName: modalProductName.textContent,
-        price: modalProductPrice.textContent,
-        paymentMethod: currentSelectedMethod,
-        timestamp: new Date().toISOString()
-    };
-
-    // Simpan ke localStorage
-    let orders = JSON.parse(localStorage.getItem('wureg_orders')) || [];
-    orders.unshift(newOrder); // Tambah pesanan baru di awal array
-    localStorage.setItem('wureg_orders', JSON.stringify(orders));
-
+function linkwa(product, price) {
+    modalProductName.textContent = product;
+    modalProductPrice.textContent = price;
+    const Now = { product, price };
     // Buat pesan dan URL WhatsApp
     const phoneNumber = "6281528483575"; // Nomor WhatsApp tujuan (format 62)
-    let message = `Halo Hafiz Wrg,\n\nSaya mau beli jualan mu:\n--------------------------\nProduk: *${newOrder.productName}*\nHarga: *${newOrder.price}\n--------------------------\n\n`;
+    let message = `Halo Fiz,\n\nAku mau beli jualan mu Ini:\n--------------------------\nProduk: *${Now.product}*\nHarga: *${Now.price}*\n--------------------------\n\n`;
 
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
     // Buka WhatsApp di tab baru
     window.open(whatsappUrl, '_blank');
-    
-    // Tutup modal
-    closePaymentModal();
-
-    // Tampilkan notifikasi
-    showToast('Anda akan diarahkan ke WhatsApp untuk konfirmasi.', false);
-}
-
-function lynk(){
-    const lynkurl = 'https://lynk.id/hafizwrg';
-    window.open(lynkurl, '_blank');
 }
 
 // Fungsi untuk menampilkan notifikasi toast
