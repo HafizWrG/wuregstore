@@ -62,7 +62,7 @@ body {
 
 /* Animasi untuk modal */
 .product-card:hover{
-    transform: scale(1.05);
+    transform: scale(1.45);
 }
 
 .modal-enter {
@@ -89,5 +89,6 @@ body {
     border: 1px solid #980000; /* violet-900 */
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
 }
+
 
 
