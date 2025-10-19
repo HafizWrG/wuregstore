@@ -3,8 +3,8 @@ body {
     font-family: 'Inter', sans-serif;
     background-color: #000000; /* Warna dasar hitam pekat */
     /* Background pattern grid khas gamer */
-    background-image: url('Image/Bg.jpg');
-    background-size: 80rem;
+    background-image: url('https://wallpaperaccess.com/full/2140.jpg');
+    background-size: 150vh;
 }
 
 .product-card {
@@ -89,6 +89,7 @@ body {
     border: 1px solid #980000; /* violet-900 */
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
 }
+
 
 
 
