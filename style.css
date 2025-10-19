@@ -12,14 +12,16 @@ body {
     flex-direction: column;
     justify-content: space-between;
     color: rgba(0, 0, 0, 0.0);
-    backdrop-filter: blur(3px);
+    backdrop-filter: blur(5px);
     border-radius: 25px;
     border-width: 3.5px;
     border-color: rgba(12, 12, 12);
     border-style: solid;
     overflow: hidden;
-    background-color: rgba(0, 0, 0, 0.31);
-    width: clamp(95%, 60%, 100%);
+    background-color: rgba(0, 0, 0, 0.2);
+    width: clamp(90%, 60%, 95%);
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
 }
 
 .port {
@@ -59,6 +61,10 @@ body {
 }
 
 /* Animasi untuk modal */
+.product-card:hover{
+    transform: scale(1.05);
+}
+
 .modal-enter {
     opacity: 0;
     transform: scale(1.95) translateY(10px);
@@ -83,4 +89,5 @@ body {
     border: 1px solid #980000; /* violet-900 */
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
 }
+
 
