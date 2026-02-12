@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Al-Baiquniyah</title>
+    <title>Baiquniyah Pro - Hafalan & Kuis</title>
     
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
         body {
-            font-family: 'Quicksand', sans-serif;
-            background-color: #f0fdf4; /* Soft Green tint */
-            color: #334155;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
         }
         
         .font-arabic {
@@ -24,28 +24,26 @@
             line-height: 2.2;
         }
 
-        /* Clean Card Style */
-        .card {
-            background: white;
-            border-radius: 24px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-            border: 1px solid #e2e8f0;
-        }
-        
-        /* Smooth Fade In */
-        .fade-in {
-            animation: fadeIn 0.3s ease-in-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Glassmorphism Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.05);
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        /* Animation */
+        .fade-enter { opacity: 0; transform: scale(0.98); }
+        .fade-enter-active { opacity: 1; transform: scale(1); transition: opacity 300ms, transform 300ms; }
+        
+        /* Checkbox Custom */
+        .checkbox-wrapper input:checked + div {
+            background-color: #10b981;
+            border-color: #10b981;
+        }
+        .checkbox-wrapper input:checked + div svg {
+            display: block;
+        }
     </style>
     
     <script>
@@ -53,203 +51,149 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: { 500: '#10b981', 600: '#059669', 100: '#d1fae5', 50: '#ecfdf5' }, // Emerald
-                        secondary: { 500: '#3b82f6', 100: '#dbeafe', 50: '#eff6ff' } // Blue
+                        primary: { 500: '#0d9488', 600: '#0f766e', 50: '#f0fdfa' }, // Teal
+                        accent: { 500: '#f59e0b', 100: '#fef3c7' } // Amber
                     }
                 }
             }
         }
     </script>
 </head>
-<body class="min-h-screen">
+<body class="min-h-screen bg-slate-50 selection:bg-primary-100 selection:text-primary-600">
 
     <div id="root"></div>
 
     <script type="text/babel">
         // --- ICONS ---
         const Icons = {
-            Book: () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>,
-            Play: () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>,
-            Home: () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>,
-            Clock: () => <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>,
-            Refresh: () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+            BookOpen: () => <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>,
+            CheckCircle: () => <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>,
+            Clock: () => <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>,
+            Play: () => <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>,
+            ChevronLeft: () => <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>,
+            Check: () => <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" /></svg>
         };
 
-        // --- DATA: NADZOM FULL (34 VERSES) ---
-        const nadzomFull = [
-            { ar: "أَبْدَأُ بِالْحَمْدِ مُصَلِّياً عَلَى ... مُحَمَّدٍ خَيْرِ نَبِيٍّ أُرْسِلا", id: "Aku memulai dengan memuji (Allah) sambil bershalawat kepada ... Muhammad, sebaik-baik Nabi yang diutus." },
-            { ar: "وَذِي مِنَ أقْسَامِ الحَدِيثِ عِدَّه ... وَكُلُّ وَاحِدٍ أَتَى وَحَدَّه", id: "Dan ini adalah sejumlah pembagian hadis ... dan setiap bagian datang beserta definisinya." },
-            { ar: "أَوَّلُهَا الصَّحِيحُ وَهْوَ مَا اتَّصَلْ ... إِسْنَادُهُ وَلَمْ يَشُذَّ أَوْ يُعَلْ", id: "Yang pertama adalah Shahih, yaitu yang bersambung ... sanadnya dan tidak syadz (janggal) atau ber-illat (cacat)." },
-            { ar: "يَرْوِيهِ عَدْلٌ ضَابِطٌ عَنْ مِثْلِهِ ... مُعْتَمَدٌ فِي ضَبْطِهِ وَنَقْلِهِ", id: "Diriwayatkan oleh perawi adil dan dhabit dari yang semisalnya ... yang diandalkan dalam kedhabitan dan periwayatannya." },
-            { ar: "وَالْحَسَنُ الْمَعْرُوفُ طُرْقاً وَغَدَتْ ... رِجَالُهُ لاَ كَالصَّحِيحِ اشْتَهَرَتْ", id: "Dan Hasan adalah yang dikenal jalan periwayatannya, namun ... para perawinya tidak sepopuler (sekuat) perawi hadis shahih." },
-            { ar: "وَكُلُّ مَا عَنْ رُتْبَةِ الحُسْنِ قَصُرْ ... فَهْوَ الضَّعِيفُ وَهُوَ أقْسَاماً كُثُرْ", id: "Dan setiap yang kurang dari tingkatan Hasan ... maka itu adalah Dhaif, dan ia mempunyai banyak pembagian." },
-            { ar: "وَمَا أُضِيفَ لِلنَّبِي الْمَرْفُوعُ ... وَمَا لِتَابِعٍ هُوَ الْمَقْطُوعُ", id: "Dan apa yang disandarkan kepada Nabi adalah Marfu' ... dan yang disandarkan kepada Tabi'in adalah Maqthu'." },
-            { ar: "وَالْمُسْنَدُ الْمُتَّصِلُ الْمَسْمُوعُ ... إِسْنَادُهُ مِنْ رَاوِيهِ حَتَّى الْمُصْطَفَى", id: "Dan Musnad adalah yang bersambung dan didengar ... sanadnya dari perawinya hingga Al-Musthafa (Nabi)." },
-            { ar: "وَمَا بِسَمْعِ كُلِّ رَاوٍ يَتَّصِلْ ... إِسْنَادُهُ لِلْمُصْطَفَى فَالْمُتَّصِلْ", id: "Dan apa yang dengan pendengaran setiap perawi bersambung ... sanadnya kepada Al-Musthafa, maka itu Muttashil." },
-            { ar: "مُسَلْسَلٌ قُلْ مَا عَلَى وَصْفٍ أَتَى ... مِثْلُ أَمَا وَاللهِ أَنْبَأَنِي الْفَتَى", id: "Musalsal katakanlah: apa yang datang dengan sifat tertentu ... seperti: 'Ingatlah, demi Allah, pemuda itu memberitahuku'." },
-            { ar: "كَذَاكَ قَدْ حَدَّثَنِيهِ قَائِمَا ... أَوْ بَعْدَ أَنْ حَدَّثَنِي تَبَسَّمَا", id: "Begitu juga: 'Dia menceritakannya kepadaku sambil berdiri' ... atau 'setelah menceritakan padaku, dia tersenyum'." },
-            { ar: "عَزِيزٌ مَرْوِيُّ اثْنَيْنِ أَوْ ثَلاَثَهْ ... مَشْهُورٌ مَرْوِيُّ فَوْقَ مَا ثَلاَثَهْ", id: "Aziz adalah yang diriwayatkan oleh dua atau tiga orang ... Masyhur adalah yang diriwayatkan lebih dari tiga orang." },
-            { ar: "مُعَنْعَنٌ كَعَن سَعِيدٍ عَنْ كَرَمْ ... وَمُبْهَمٌ مَا فِيهِ رَاوٍ لَمْ يُسَمْ", id: "Mu'an'an seperti 'Dari Sa'id dari Karam' ... dan Mubham adalah yang di dalamnya ada perawi tak bernama." },
-            { ar: "وَكُلُّ مَا قَلَّتْ رِجَالُهُ عَلاَ ... وَضِدُّهُ ذَاكَ الَّذِي قَدْ نَزَلاَ", id: "Setiap yang sedikit jumlah perawinya, itu 'Ali (Tinggi) ... dan lawannya adalah yang Nazil (Rendah)." },
-            { ar: "وَمَا أَضَفْتَهُ إِلَى الأَصْحَابِ مِنْ ... قَوْلٍ وَفِعْلٍ فَهْوَ مَوْقُوفٌ زُكِنْ", id: "Dan apa yang kau sandarkan kepada Sahabat berupa ... perkataan dan perbuatan, maka itu Mauquf, pahamilah." },
-            { ar: "وَمُرْسَلٌ مِنْهُ الصَّحَابِيُّ سَقَطْ ... وَقُلْ غَرِيبٌ مَا رَوَى رَاوٍ فَقَطْ", id: "Dan Murshal adalah yang gugur Sahabat darinya ... dan katakanlah Gharib untuk yang diriwayatkan satu orang saja." },
-            { ar: "وَكُلُّ مَا لَمْ يَتَّصِلْ بِحَالِ ... إِسْنَادُهُ مُنْقَطِعُ الأَوْصَالِ", id: "Dan setiap yang tidak bersambung sama sekali ... sanadnya, adalah Munqathi' (terputus) sendi-sendinya." },
-            { ar: "وَالْمُعْضَلُ السَّاقِطُ مِنْهُ اثْنَانِ ... وَمَا أَتَى مُدَلَّساً نَوْعَانِ", id: "Dan Mu'dhal adalah yang gugur darinya dua orang (berurut) ... dan yang datang secara Mudallas ada dua jenis." },
-            { ar: "الأَوَّلُ الإِسْقَاطُ لِلشَّيْخِ وَأَنْ ... يَنْقُلَ عَمَّنْ فَوْقَهُ بِعَنْ وَأَنْ", id: "Pertama: Menggugurkan guru dan ... menukil dari yang di atasnya dengan lafaz 'An' dan 'Anna'." },
-            { ar: "وَالثَّانِ لاَ يُسْقِطُهُ لَكِنْ يَصِفْ ... أَوْصَافَهُ بِمَا بِهِ لاَ يَنْعَرِفْ", id: "Kedua: Tidak menggugurkannya, tapi menyifati ... sifat-sifatnya dengan yang tidak dikenal darinya." },
-            { ar: "وَمَا يُخَالِفْ ثِقَةٌ فِيهِ الْمَلأ ... فَالشَّاذُّ وَالْمَقْلُوبُ قِسْمَانِ تَلا", id: "Dan apa yang seorang tsiqah menyelisih orang banyak ... maka itu Syadz. Dan Maqlub ada dua bagian yang mengiringi." },
-            { ar: "إِبْدَالُ رَاوٍ مَا بِرَاوٍ قِسْمُ ... وَقَلْبُ إِسْنَادٍ لِمَتْنٍ قِسْمُ", id: "Mengganti seorang perawi dengan perawi lain adalah satu bagian ... dan membalik sanad untuk suatu matan adalah satu bagian." },
-            { ar: "وَالْفَرْدُ مَا قَيَّدْتَهُ بِثِقَةِ ... أَوْ جَمْعٍ أَوْ قَصْرٍ عَلَى رِوَايَةِ", id: "Dan Fard adalah apa yang kau batasi dengan orang tsiqah ... atau jamaah atau pembatasan pada riwayat tertentu." },
-            { ar: "وَمَا بِعِلَّةٍ غُمُوضٍ أَوْ خَفَا ... مُعَلَّلٌ عِنْدَهُمُ قَدْ عُرِفَا", id: "Dan apa yang memiliki cacat samar atau tersembunyi ... dikenal di sisi mereka sebagai Mu'allal." },
-            { ar: "وَذُو اخْتِلاَفِ سَنَدٍ أَوْ مَتْنِ ... مُضْطَرِبٌ عِنْدَ أُهَيْلِ الْفَنِّ", id: "Dan yang memiliki perbedaan sanad atau matan ... adalah Mudhtharib menurut ahli hadis." },
-            { ar: "وَالْمُدْرَجَاتُ فِي الحَدِيثِ مَا أَتَتْ ... مِنْ بَعْضِ أَلْفَاظِ الرُّوَاةِ اتَّصَلَتْ", id: "Dan Mudrajat dalam hadis adalah yang datang ... dari sebagian lafaz perawi yang bersambung (dengan matan)." },
-            { ar: "وَمَا رَوَى كُلُّ قَرِينٍ عَنْ أَخِهْ ... مُدَبَّجٌ فَاعْرِفْهُ حَقًّا وَانْتَخِهْ", id: "Dan apa yang diriwayatkan setiap kawan dari saudaranya ... adalah Mudabbaj, maka kenalilah dengan benar dan banggalah." },
-            { ar: "مُتَّفِقٌ لَفْظاً وَخَطاً مُتَّفِقْ ... وَضِدُّهُ فِيمَا ذَكَرْنَا الْمُفْتَرِقْ", id: "Muttafiq adalah yang lafaz dan tulisannya sama ... dan lawannya dalam yang kami sebutkan adalah Muftariq." },
-            { ar: "مُؤْتَلِفٌ مُتَّفِقُ الخَطِّ فَقَطْ ... وَضِدُّهُ مُخْتَلِفُ فَاخْشَ الْغَلَطْ", id: "Mu'talif adalah yang sama tulisannya saja ... dan lawannya Mukhtalif, maka takutlah salah." },
-            { ar: "وَالْمُنْكَرُ الْفَرْدُ بِهِ رَاوٍ غَدَا ... تَعْدِيلُهُ لاَ يَحْمِلُ التَّفَرُّدَا", id: "Dan Munkar adalah yang seorang perawi bersendiri dengannya ... yang keadilannya tidak bisa menanggung kesendirian itu." },
-            { ar: "مَتْرُوكُهُ مَا وَاحِدٌ بِهِ انْفَرَدْ ... وَأَجْمَعُوا لِضَعْفِهِ فَهُوَ كَرَدْ", id: "Matruk adalah yang satu orang bersendiri dengannya ... dan mereka sepakat atas kelemahannya, maka ia tertolak." },
-            { ar: "وَالْكَذِبُ الْمُخْتَلَقُ المَصْنُوعُ ... عَلَى النَّبِيِّ فَذَلِكَ الْمَوْضُوعُ", id: "Dan dusta yang direkayasa dan dibuat-buat ... atas nama Nabi, maka itulah Maudhu'." },
-            { ar: "وَقَدْ أَتَتْ كَالْجَوْهَرِ المَكْنُونِ ... سَمَّيْتُهَا مَنْظُومَةَ الْبَيْقُونِي", id: "Dan ia telah datang bagaikan mutiara yang tersimpan ... aku namakan ia Manzhumah Baiquni." },
-            { ar: "فَوْقَ الثَّلاَثِينَ بِأَرْبَعٍ أَتَتْ ... أقْسَامُهَا تَمَّتْ بِخَيْرٍ خُتِمَتْ", id: "Ia datang lebih empat di atas tiga puluh (34 bait) ... pembagiannya telah sempurna, ditutup dengan kebaikan." }
+        // --- DATA NADZOM (34 Bait) ---
+        const nadzomData = [
+            { id: 1, ar: "أَبْدَأُ بِالْحَمْدِ مُصَلِّياً عَلَى ... مُحَمَّدٍ خَيْرِ نَبِيٍّ أُرْسِلا", tr: "Aku memulai dengan memuji (Allah) bershalawat atas Muhammad, sebaik-baik Nabi yang diutus." },
+            { id: 2, ar: "وَذِي مِنَ أقْسَامِ الحَدِيثِ عِدَّه ... وَكُلُّ وَاحِدٍ أَتَى وَحَدَّه", tr: "Dan ini adalah sejumlah pembagian hadis, dan setiap bagian datang beserta definisinya." },
+            { id: 3, ar: "أَوَّلُهَا الصَّحِيحُ وَهْوَ مَا اتَّصَلْ ... إِسْنَادُهُ وَلَمْ يَشُذَّ أَوْ يُعَلْ", tr: "Pertama adalah Shahih, yaitu yang bersambung sanadnya dan tidak syadz (janggal) atau ber-illat (cacat)." },
+            { id: 4, ar: "يَرْوِيهِ عَدْلٌ ضَابِطٌ عَنْ مِثْلِهِ ... مُعْتَمَدٌ فِي ضَبْطِهِ وَنَقْلِهِ", tr: "Diriwayatkan oleh perawi adil dan dhabit dari yang semisalnya, yang diandalkan dalam kedhabitan dan penukilannya." },
+            { id: 5, ar: "وَالْحَسَنُ الْمَعْرُوفُ طُرْقاً وَغَدَتْ ... رِجَالُهُ لاَ كَالصَّحِيحِ اشْتَهَرَتْ", tr: "Dan Hasan adalah yang dikenal jalan periwayatannya, namun para perawinya tidak sepopuler perawi hadis shahih." },
+            { id: 6, ar: "وَكُلُّ مَا عَنْ رُتْبَةِ الحُسْنِ قَصُرْ ... فَهْوَ الضَّعِيفُ وَهُوَ أقْسَاماً كُثُرْ", tr: "Dan setiap yang kurang dari tingkatan Hasan, maka itu adalah Dhaif, dan ia mempunyai banyak pembagian." },
+            { id: 7, ar: "وَمَا أُضِيفَ لِلنَّبِي الْمَرْفُوعُ ... وَمَا لِتَابِعٍ هُوَ الْمَقْطُوعُ", tr: "Apa yang disandarkan kepada Nabi adalah Marfu', dan yang disandarkan kepada Tabi'in adalah Maqthu'." },
+            { id: 8, ar: "وَالْمُسْنَدُ الْمُتَّصِلُ الْمَسْمُوعُ ... إِسْنَادُهُ مِنْ رَاوِيهِ حَتَّى الْمُصْطَفَى", tr: "Musnad adalah yang bersambung dan didengar sanadnya dari perawinya hingga Al-Musthafa (Nabi)." },
+            { id: 9, ar: "وَمَا بِسَمْعِ كُلِّ رَاوٍ يَتَّصِلْ ... إِسْنَادُهُ لِلْمُصْطَفَى فَالْمُتَّصِلْ", tr: "Apa yang dengan pendengaran setiap perawi bersambung sanadnya kepada Al-Musthafa, maka itu Muttashil." },
+            { id: 10, ar: "مُسَلْسَلٌ قُلْ مَا عَلَى وَصْفٍ أَتَى ... مِثْلُ أَمَا وَاللهِ أَنْبَأَنِي الْفَتَى", tr: "Musalsal katakanlah: apa yang datang dengan sifat tertentu, seperti: 'Ingatlah, demi Allah, pemuda itu memberitahuku'." },
+            { id: 11, ar: "كَذَاكَ قَدْ حَدَّثَنِيهِ قَائِمَا ... أَوْ بَعْدَ أَنْ حَدَّثَنِي تَبَسَّمَا", tr: "Begitu juga: 'Dia menceritakannya kepadaku sambil berdiri', atau 'setelah menceritakan padaku, dia tersenyum'." },
+            { id: 12, ar: "عَزِيزٌ مَرْوِيُّ اثْنَيْنِ أَوْ ثَلاَثَهْ ... مَشْهُورٌ مَرْوِيُّ فَوْقَ مَا ثَلاَثَهْ", tr: "Aziz adalah yang diriwayatkan oleh dua atau tiga orang. Masyhur adalah yang diriwayatkan lebih dari tiga orang." },
+            { id: 13, ar: "مُعَنْعَنٌ كَعَن سَعِيدٍ عَنْ كَرَمْ ... وَمُبْهَمٌ مَا فِيهِ رَاوٍ لَمْ يُسَمْ", tr: "Mu'an'an seperti 'Dari Sa'id dari Karam'. Dan Mubham adalah yang di dalamnya ada perawi tak bernama." },
+            { id: 14, ar: "وَكُلُّ مَا قَلَّتْ رِجَالُهُ عَلاَ ... وَضِدُّهُ ذَاكَ الَّذِي قَدْ نَزَلاَ", tr: "Setiap yang sedikit jumlah perawinya, itu 'Ali (Tinggi). Dan lawannya adalah yang Nazil (Rendah)." },
+            { id: 15, ar: "وَمَا أَضَفْتَهُ إِلَى الأَصْحَابِ مِنْ ... قَوْلٍ وَفِعْلٍ فَهْوَ مَوْقُوفٌ زُكِنْ", tr: "Apa yang kau sandarkan kepada Sahabat berupa perkataan dan perbuatan, maka itu Mauquf, pahamilah." },
+            { id: 16, ar: "وَمُرْسَلٌ مِنْهُ الصَّحَابِيُّ سَقَطْ ... وَقُلْ غَرِيبٌ مَا رَوَى رَاوٍ فَقَطْ", tr: "Murshal adalah yang gugur Sahabat darinya. Dan katakanlah Gharib untuk yang diriwayatkan satu orang saja." },
+            { id: 17, ar: "وَكُلُّ مَا لَمْ يَتَّصِلْ بِحَالِ ... إِسْنَادُهُ مُنْقَطِعُ الأَوْصَالِ", tr: "Setiap yang tidak bersambung sama sekali sanadnya, adalah Munqathi' (terputus) sendi-sendinya." },
+            { id: 18, ar: "وَالْمُعْضَلُ السَّاقِطُ مِنْهُ اثْنَانِ ... وَمَا أَتَى مُدَلَّساً نَوْعَانِ", tr: "Mu'dhal adalah yang gugur darinya dua orang (berurut). Dan yang datang secara Mudallas ada dua jenis." },
+            { id: 19, ar: "الأَوَّلُ الإِسْقَاطُ لِلشَّيْخِ وَأَنْ ... يَنْقُلَ عَمَّنْ فَوْقَهُ بِعَنْ وَأَنْ", tr: "Pertama: Menggugurkan guru dan menukil dari yang di atasnya dengan lafaz 'An' dan 'Anna'." },
+            { id: 20, ar: "وَالثَّانِ لاَ يُسْقِطُهُ لَكِنْ يَصِفْ ... أَوْصَافَهُ بِمَا بِهِ لاَ يَنْعَرِفْ", tr: "Kedua: Tidak menggugurkannya, tapi menyifati sifat-sifatnya dengan yang tidak dikenal darinya." },
+            { id: 21, ar: "وَمَا يُخَالِفْ ثِقَةٌ فِيهِ الْمَلأ ... فَالشَّاذُّ وَالْمَقْلُوبُ قِسْمَانِ تَلا", tr: "Apa yang seorang tsiqah menyelisih orang banyak, maka itu Syadz. Dan Maqlub ada dua bagian yang mengiringi." },
+            { id: 22, ar: "إِبْدَالُ رَاوٍ مَا بِرَاوٍ قِسْمُ ... وَقَلْبُ إِسْنَادٍ لِمَتْنٍ قِسْمُ", tr: "Mengganti seorang perawi dengan perawi lain adalah satu bagian. Dan membalik sanad untuk suatu matan adalah satu bagian." },
+            { id: 23, ar: "وَالْفَرْدُ مَا قَيَّدْتَهُ بِثِقَةِ ... أَوْ جَمْعٍ أَوْ قَصْرٍ عَلَى رِوَايَةِ", tr: "Dan Fard adalah apa yang kau batasi dengan orang tsiqah, atau jamaah atau pembatasan pada riwayat tertentu." },
+            { id: 24, ar: "وَمَا بِعِلَّةٍ غُمُوضٍ أَوْ خَفَا ... مُعَلَّلٌ عِنْدَهُمُ قَدْ عُرِفَا", tr: "Dan apa yang memiliki cacat samar atau tersembunyi, dikenal di sisi mereka sebagai Mu'allal." },
+            { id: 25, ar: "وَذُو اخْتِلاَفِ سَنَدٍ أَوْ مَتْنِ ... مُضْطَرِبٌ عِنْدَ أُهَيْلِ الْفَنِّ", tr: "Dan yang memiliki perbedaan sanad atau matan, adalah Mudhtharib menurut ahli hadis." },
+            { id: 26, ar: "وَالْمُدْرَجَاتُ فِي الحَدِيثِ مَا أَتَتْ ... مِنْ بَعْضِ أَلْفَاظِ الرُّوَاةِ اتَّصَلَتْ", tr: "Dan Mudrajat dalam hadis adalah yang datang dari sebagian lafaz perawi yang bersambung (dengan matan)." },
+            { id: 27, ar: "وَمَا رَوَى كُلُّ قَرِينٍ عَنْ أَخِهْ ... مُدَبَّجٌ فَاعْرِفْهُ حَقًّا وَانْتَخِهْ", tr: "Dan apa yang diriwayatkan setiap kawan dari saudaranya, adalah Mudabbaj, maka kenalilah dengan benar dan banggalah." },
+            { id: 28, ar: "مُتَّفِقٌ لَفْظاً وَخَطاً مُتَّفِقْ ... وَضِدُّهُ فِيمَا ذَكَرْنَا الْمُفْتَرِقْ", tr: "Muttafiq adalah yang lafaz dan tulisannya sama. Dan lawannya dalam yang kami sebutkan adalah Muftariq." },
+            { id: 29, ar: "مُؤْتَلِفٌ مُتَّفِقُ الخَطِّ فَقَطْ ... وَضِدُّهُ مُخْتَلِفُ فَاخْشَ الْغَلَطْ", tr: "Mu'talif adalah yang sama tulisannya saja. Dan lawannya Mukhtalif, maka takutlah salah." },
+            { id: 30, ar: "وَالْمُنْكَرُ الْفَرْدُ بِهِ رَاوٍ غَدَا ... تَعْدِيلُهُ لاَ يَحْمِلُ التَّفَرُّدَا", tr: "Dan Munkar adalah yang seorang perawi bersendiri dengannya, yang keadilannya tidak bisa menanggung kesendirian itu." },
+            { id: 31, ar: "مَتْرُوكُهُ مَا وَاحِدٌ بِهِ انْفَرَدْ ... وَأَجْمَعُوا لِضَعْفِهِ فَهُوَ كَرَدْ", tr: "Matruk adalah yang satu orang bersendiri dengannya, dan mereka sepakat atas kelemahannya, maka ia tertolak." },
+            { id: 32, ar: "وَالْكَذِبُ الْمُخْتَلَقُ المَصْنُوعُ ... عَلَى النَّبِيِّ فَذَلِكَ الْمَوْضُوعُ", tr: "Dan dusta yang direkayasa dan dibuat-buat atas nama Nabi, maka itulah Maudhu'." },
+            { id: 33, ar: "وَقَدْ أَتَتْ كَالْجَوْهَرِ المَكْنُونِ ... سَمَّيْتُهَا مَنْظُومَةَ الْبَيْقُونِي", tr: "Dan ia telah datang bagaikan mutiara yang tersimpan, aku namakan ia Manzhumah Baiquni." },
+            { id: 34, ar: "فَوْقَ الثَّلاَثِينَ بِأَرْبَعٍ أَتَتْ ... أقْسَامُهَا تَمَّتْ بِخَيْرٍ خُتِمَتْ", tr: "Ia datang lebih empat di atas tiga puluh (34 bait), pembagiannya telah sempurna, ditutup dengan kebaikan." }
         ];
 
-        // --- DATA: COMPLETE 65 QUESTIONS ---
+        // --- DATA SOAL (Strict Matn Base) ---
         const questionsData = [
-            // 1. Mukadimah
-            { type: "nadzom", question: "أكمل البيت: أَبْدَأُ بِالْحَمْدِ مُصَلِّياً عَلَى ...", options: ["مُحَمَّدٍ خَيْرِ نَبِيٍّ أُرْسِلا", "وَآلِهِ وَصَحْبِهِ وَمَنْ تَلَا", "نَبِيِّنَا الْمُصْطَفَى خَيْرِ الْوَرَى"], answer: "مُحَمَّدٍ خَيْرِ نَبِيٍّ أُرْسِلا" },
-            { type: "nadzom", question: "أكمل البيت: وَذِي مِنَ أقْسَامِ الحَدِيثِ عِدَّه ...", options: ["وَكُلُّ وَاحِدٍ أَتَى وَحَدَّه", "وَنَظْمُهَا جَاءَكَ فِي عُجَالَة", "خُذْهَا هَدِيَّةً مِنَ الرِّسَالَة"], answer: "وَكُلُّ وَاحِدٍ أَتَى وَحَدَّه" },
+            // Mukadimah
+            { type: "nadzom", question: "أكمل: أَبْدَأُ بِالْحَمْدِ مُصَلِّياً عَلَى ...", options: ["مُحَمَّدٍ خَيْرِ نَبِيٍّ أُرْسِلا", "وَآلِهِ وَصَحْبِهِ وَمَنْ تَلَا", "نَبِيِّنَا الْمُصْطَفَى خَيْرِ الْوَرَى"], answer: "مُحَمَّدٍ خَيْرِ نَبِيٍّ أُرْسِلا" },
+            { type: "nadzom", question: "أكمل: وَذِي مِنَ أقْسَامِ الحَدِيثِ عِدَّه ...", options: ["وَكُلُّ وَاحِدٍ أَتَى وَحَدَّه", "وَنَظْمُهَا جَاءَكَ فِي عُجَالَة", "خُذْهَا هَدِيَّةً مِنَ الرِّسَالَة"], answer: "وَكُلُّ وَاحِدٍ أَتَى وَحَدَّه" },
+            
+            // Sahih & Hasan
+            { type: "tarif", question: "بم عرف الناظم الحديث الصحيح؟", options: ["ما اتصل سنده ولم يشذ أو يعل", "ما رواه العدل الضابط عن مثله فقط", "ما صح سنده ومتنه عند العلماء"], answer: "ما اتصل سنده ولم يشذ أو يعل" },
+            { type: "nadzom", question: "أكمل وصف راوي الصحيح: يَرْوِيهِ عَدْلٌ ضَابِطٌ عَنْ مِثْلِهِ ...", options: ["مُعْتَمَدٌ فِي ضَبْطِهِ وَنَقْلِهِ", "مُشْتَهَرٌ بِالصِّدْقِ فِي مَقَالِهِ", "وَلَيْسَ فِي إِسْنَادِهِ مَا يُكْرَهُ"], answer: "مُعْتَمَدٌ فِي ضَبْطِهِ وَنَقْلِهِ" },
+            { type: "tarif", question: "الحديث الحسن عند الناظم هو:", options: ["المعروف طرقاً وغدت رجاله لا كالصحيح اشتهرت", "ما اتصل سنده بنقل العدل الضابط", "ما خف ضبط راويه"], answer: "المعروف طرقاً وغدت رجاله لا كالصحيح اشتهرت" },
 
-            // 2. Sahih
-            { type: "tarif", question: "الحديث الصحيح هو:", options: ["ما اتصل سنده ولم يشذ أو يعل", "ما رواه عدد كثير عن عدد كثير", "ما سقط من إسناده راو واحد"], answer: "ما اتصل سنده ولم يشذ أو يعل" },
-            { type: "nadzom", question: "ما هي صفات راوي الحديث الصحيح في النظم؟", options: ["عَدْلٌ ضَابِطٌ", "مَسْتُورُ الْحَالِ", "مَشْهُورٌ بِالْكَرَمِ"], answer: "عَدْلٌ ضَابِطٌ" },
-            { type: "nadzom", question: "أكمل: يَرْوِيهِ عَدْلٌ ضَابِطٌ عَنْ مِثْلِهِ ...", options: ["مُعْتَمَدٌ فِي ضَبْطِهِ وَنَقْلِهِ", "وَلَيْسَ فِيهِ عِلَّةٌ فِي نَقْلِهِ", "مُشْتَهَرٌ بِالصِّدْقِ فِي مَقَالِهِ"], answer: "مُعْتَمَدٌ فِي ضَبْطِهِ وَنَقْلِهِ" },
+            // Dhaif
+            { type: "nadzom", question: "أكمل: وَكُلُّ مَا عَنْ رُتْبَةِ الحُسْنِ قَصُرْ ...", options: ["فَهْوَ الضَّعِيفُ وَهُوَ أقْسَاماً كُثُرْ", "فَذَاكَ مَتْرُوكٌ وَلَا يُحْتَجُّ بِهْ", "فَإِنَّهُ الْمَوْضُوعُ شَرُّ الْخَبَرِ"], answer: "فَهْوَ الضَّعِيفُ وَهُوَ أقْسَاماً كُثُرْ" },
 
-            // 3. Hasan
-            { type: "tarif", question: "الحديث الحسن هو:", options: ["المعروف طرقاً ورجاله لا كالصحيح اشتهرت", "ما اتصل سنده بنقل العدل الضابط", "ما فقد شرطاً من شروط الصحة"], answer: "المعروف طرقاً ورجاله لا كالصحيح اشتهرت" },
-            { type: "nadzom", question: "أكمل: وَالْحَسَنُ الْمَعْرُوفُ طُرْقاً وَغَدَتْ ...", options: ["رِجَالُهُ لاَ كَالصَّحِيحِ اشْتَهَرَتْ", "صِفَاتُهُ لاَ كَالصَّحِيحِ اشْتَهَرَتْ", "أَسَانِيدُهُ لِلْمُصْطَفَى اتَّصَلَتْ"], answer: "رِجَالُهُ لاَ كَالصَّحِيحِ اشْتَهَرَتْ" },
-
-            // 4. Dhaif
-            { type: "nadzom", question: "أكمل البيت: وَكُلُّ مَا عَنْ رُتْبَةِ الحُسْنِ قَصُرْ ...", options: ["فَهْوَ الضَّعِيفُ وَهُوَ أقْسَاماً كُثُرْ", "فَذَاكَ مَتْرُوكٌ وَلَا يُحْتَجُّ بِهْ", "فَإِنَّهُ الْمَوْضُوعُ كَذِباً يُذْكَرُ"], answer: "فَهْوَ الضَّعِيفُ وَهُوَ أقْسَاماً كُثُرْ" },
-            { type: "tarif", question: "لماذا قال الناظم (أقساماً كثر) في الضعيف؟", options: ["لأن أسباب الضعف كثيرة ومتنوعة", "لأن الضعيف هو أكثر الأحاديث وجوداً", "للقافية فقط"], answer: "لأن أسباب الضعف كثيرة ومتنوعة" },
-
-            // 5. Marfu & Maqthu
+            // Marfu, Maqthu, Musnad, Muttashil
             { type: "tarif", question: "الحديث المرفوع هو ما أضيف إلى:", options: ["النبي ﷺ", "الصحابي", "التابعي"], answer: "النبي ﷺ" },
             { type: "tarif", question: "الحديث المقطوع هو ما أضيف إلى:", options: ["التابعي", "النبي ﷺ", "الصحابي"], answer: "التابعي" },
-            { type: "nadzom", question: "أكمل البيت: وَمَا أُضِيفَ لِلنَّبِي الْمَرْفُوعُ ...", options: ["وَمَا لِتَابِعٍ هُوَ الْمَقْطُوعُ", "وَمَا لِصَاحِبٍ هُوَ الْمَوْقُوفُ", "وَكُلُّ مَا لَمْ يَتَّصِلْ مَقْطُوعُ"], answer: "وَمَا لِتَابِعٍ هُوَ الْمَقْطُوعُ" },
+            { type: "tarif", question: "الحديث المسند هو:", options: ["المتصل الإسناد من راويه حتى المصطفى", "ما رواه الجماعة عن الجماعة", "ما اتصل سنده بغير انقطاع"], answer: "المتصل الإسناد من راويه حتى المصطفى" },
+            { type: "nadzom", question: "أكمل: وَمَا بِسَمْعِ كُلِّ رَاوٍ يَتَّصِلْ ...", options: ["إِسْنَادُهُ لِلْمُصْطَفَى فَالْمُتَّصِلْ", "فَذَاكَ مَقْطُوعٌ بِهِ قَدْ انْضَبَطْ", "إِسْنَادُهُ مُنْقَطِعُ الأَوْصَالِ"], answer: "إِسْنَادُهُ لِلْمُصْطَفَى فَالْمُتَّصِلْ" },
 
-            // 6. Musnad
-            { type: "tarif", question: "الحديث المسند هو:", options: ["المتصل الإسناد من راويه حتى المصطفى", "ما رواه الجماعة عن الجماعة", "ما سقط منه الصحابي"], answer: "المتصل الإسناد من راويه حتى المصطفى" },
-            { type: "nadzom", question: "أكمل: وَالْمُسْنَدُ الْمُتَّصِلُ الْمَسْمُوعُ ...", options: ["إِسْنَادُهُ مِنْ رَاوِيهِ حَتَّى الْمُصْطَفَى", "مِنْ رَاوِهِ إِلىَ النَّبِي الْمَرْفُوعُ", "وَلَيْسَ فِيهِ قَطْعٌ أَوْ خُضُوعُ"], answer: "إِسْنَادُهُ مِنْ رَاوِيهِ حَتَّى الْمُصْطَفَى" },
-
-            // 7. Muttashil
-            { type: "nadzom", question: "أكمل البيت: وَمَا بِسَمْعِ كُلِّ رَاوٍ يَتَّصِلْ ...", options: ["إِسْنَادُهُ لِلْمُصْطَفَى فَالْمُتَّصِلْ", "فَذَاكَ مَقْطُوعٌ بِهِ قَدْ انْضَبَطْ", "إِسْنَادُهُ مُنْقَطِعُ الأَوْصَالِ"], answer: "إِسْنَادُهُ لِلْمُصْطَفَى فَالْمُتَّصِلْ" },
-            { type: "tarif", question: "الحديث المتصل هو:", options: ["ما اتصل سنده بسماع كل راو عمن فوقه", "ما اتصل سنده بغير سماع", "ما رواه أهل المدينة"], answer: "ما اتصل سنده بسماع كل راو عمن فوقه" },
-
-            // 8. Musalsal
+            // Musalsal, Aziz, Masyhur
             { type: "tarif", question: "الحديث المسلسل هو ما تتابع فيه الرواة على:", options: ["وصف معين أو حالة معينة", "اسم معين", "بلد معين"], answer: "وصف معين أو حالة معينة" },
-            { type: "nadzom", question: "ما المثال الذي ذكره الناظم للمسلسل القولي؟", options: ["أَمَا وَاللهِ أَنْبَأَنِي الْفَتَى", "حَدَّثَنِيهِ قَائِمًا", "حَدَّثَنِي تَبَسَّمَا"], answer: "أَمَا وَاللهِ أَنْبَأَنِي الْفَتَى" },
-            { type: "nadzom", question: "أكمل: كَذَاكَ قَدْ حَدَّثَنِيهِ قَائِمَا ...", options: ["أَوْ بَعْدَ أَنْ حَدَّثَنِي تَبَسَّمَا", "أَوْ بَعْدَ أَنْ صَافَحَنِي وَسَلَّمَا", "وَقَالَ لِي يَا صَاحِبي قَدْ فَهِمَا"], answer: "أَوْ بَعْدَ أَنْ حَدَّثَنِي تَبَسَّمَا" },
-
-            // 9. Aziz & Masyhur
+            { type: "nadzom", question: "أكمل المثال: مِثْلُ أَمَا وَاللهِ أَنْبَأَنِي الْفَتَى ...", options: ["كَذَاكَ قَدْ حَدَّثَنِيهِ قَائِمَا", "أَوْ بَعْدَ أَنْ حَدَّثَنِي تَبَسَّمَا", "وَقَالَ لِي يَا صَاحِبي قَدْ فَهِمَا"], answer: "كَذَاكَ قَدْ حَدَّثَنِيهِ قَائِمَا" },
             { type: "tarif", question: "الحديث العزيز هو ما رواه:", options: ["اثنان أو ثلاثة", "واحد فقط", "أكثر من ثلاثة"], answer: "اثنان أو ثلاثة" },
-            { type: "tarif", question: "الحديث المشهور هو ما رواه:", options: ["فوق ما ثلاثة", "ثلاثة فقط", "واحد أو اثنان"], answer: "فوق ما ثلاثة" },
+            
+            // Mu'an'an, Mubham, Ali, Nazil
+            { type: "nadzom", question: "أكمل: مُعَنْعَنٌ كَعَن سَعِيدٍ عَنْ كَرَمْ ...", options: ["وَمُبْهَمٌ مَا فِيهِ رَاوٍ لَمْ يُسَمْ", "وَمُرْسَلٌ مِنْهُ الصَّحَابِيُّ سَقَطْ", "وَمَا أَتَى مُدَلَّساً نَوْعَانِ"], answer: "وَمُبْهَمٌ مَا فِيهِ رَاوٍ لَمْ يُسَمْ" },
+            { type: "tarif", question: "الحديث العالي (علا) هو:", options: ["كل ما قلت رجاله", "كل ما كثرت رجاله", "ما صح سنده"], answer: "كل ما قلت رجاله" },
 
-            // 10. Mu'an'an & Mubham
-            { type: "nadzom", question: "أكمل البيت: مُعَنْعَنٌ كَعَن سَعِيدٍ عَنْ كَرَمْ ...", options: ["وَمُبْهَمٌ مَا فِيهِ رَاوٍ لَمْ يُسَمْ", "وَمُرْسَلٌ مِنْهُ الصَّحَابِيُّ سَقَطْ", "وَمَا أَتَى مُدَلَّساً نَوْعَانِ"], answer: "وَمُبْهَمٌ مَا فِيهِ رَاوٍ لَمْ يُسَمْ" },
-            { type: "tarif", question: "المبهم في الحديث هو:", options: ["ما فيه راو لم يصرح باسمه", "ما خفي معناه", "ما فيه انقطاع خفي"], answer: "ما فيه راو لم يصرح باسمه" },
-
-            // 11. Ali & Nazil
-            { type: "tarif", question: "الحديث العالي (علا):", options: ["كل ما قلت رجاله (قرب من النبي)", "كل ما كثرت رجاله", "ما كان سنده صحيحاً"], answer: "كل ما قلت رجاله (قرب من النبي)" },
-            { type: "nadzom", question: "أكمل البيت: وَكُلُّ مَا قَلَّتْ رِجَالُهُ عَلاَ ...", options: ["وَضِدُّهُ ذَاكَ الَّذِي قَدْ نَزَلاَ", "وَهْوَ الَّذِي قَدْ حَازَ وَصْفًا أَمْثَلاَ", "وَكُلُّ مَا زَادَ فَذَاكَ أَنْزَلاَ"], answer: "وَضِدُّهُ ذَاكَ الَّذِي قَدْ نَزَلاَ" },
-
-            // 12. Mauquf
+            // Mauquf, Mursal
             { type: "tarif", question: "الحديث الموقوف هو ما أضيف إلى:", options: ["الصحابي", "النبي ﷺ", "التابعي"], answer: "الصحابي" },
-            { type: "nadzom", question: "أكمل: وَمَا أَضَفْتَهُ إِلَى الأَصْحَابِ مِنْ ...", options: ["قَوْلٍ وَفِعْلٍ فَهْوَ مَوْقُوفٌ زُكِنْ", "قَوْلٍ وَفِعْلٍ فَهْوَ مَقْطُوعٌ زُكِنْ", "قَوْلٍ وَفِعْلٍ فَهْوَ مَرْفُوعٌ زُكِنْ"], answer: "قَوْلٍ وَفِعْلٍ فَهْوَ مَوْقُوفٌ زُكِنْ" },
+            { type: "nadzom", question: "أكمل: وَمُرْسَلٌ مِنْهُ الصَّحَابِيُّ سَقَطْ ...", options: ["وَقُلْ غَرِيبٌ مَا رَوَى رَاوٍ فَقَطْ", "وَقُلْ ضَعِيفٌ مَا رَوَى رَاوٍ فَقَطْ", "وَذَاكَ مَقْطُوعٌ بِهِ قَدْ انْضَبَطْ"], answer: "وَقُلْ غَرِيبٌ مَا رَوَى رَاوٍ فَقَطْ" },
 
-            // 13. Mursal
-            { type: "nadzom", question: "أكمل البيت: وَمُرْسَلٌ مِنْهُ الصَّحَابِيُّ سَقَطْ ...", options: ["وَقُلْ غَرِيبٌ مَا رَوَى رَاوٍ فَقَطْ", "وَقُلْ ضَعِيفٌ مَا رَوَى رَاوٍ فَقَطْ", "وَذَاكَ مَقْطُوعٌ بِهِ قَدْ انْضَبَطْ"], answer: "وَقُلْ غَرِيبٌ مَا رَوَى رَاوٍ فَقَطْ" },
-            { type: "tarif", question: "الحديث المرسل هو:", options: ["ما رفعه التابعي إلى النبي (سقط منه الصحابي)", "ما سقط منه التابعي", "ما سقط من إسناده راويان"], answer: "ما رفعه التابعي إلى النبي (سقط منه الصحابي)" },
+            // Gharib, Munqathi, Mu'dhal
+            { type: "tarif", question: "الحديث الغريب هو:", options: ["ما تفرد بروايته شخص واحد (راو فقط)", "ما كان متنه غريباً", "ما رواه الغرباء"], answer: "ما تفرد بروايته شخص واحد (راو فقط)" },
+            { type: "tarif", question: "الحديث المنقطع هو:", options: ["كل ما لم يتصل إسناده بحال", "ما سقط منه الصحابي فقط", "ما سقط منه راويان على التوالي"], answer: "كل ما لم يتصل إسناده بحال" },
+            { type: "nadzom", question: "أكمل: وَالْمُعْضَلُ السَّاقِطُ مِنْهُ ...", options: ["اثْنَانِ", "وَاحِدٌ", "ثَلاَثَةٌ"], answer: "اثْنَانِ" },
 
-            // 14. Gharib
-            { type: "tarif", question: "الحديث الغريب هو:", options: ["ما تفرد بروايته شخص واحد", "ما كان متنه غريباً", "ما رواه الغرباء"], answer: "ما تفرد بروايته شخص واحد" },
-
-            // 15. Munqathi'
-            { type: "tarif", question: "الحديث المنقطع هو:", options: ["كل ما لم يتصل إسناده (بأي وجه كان)", "ما سقط منه الصحابي فقط", "ما سقط منه راويان على التوالي"], answer: "كل ما لم يتصل إسناده (بأي وجه كان)" },
-            { type: "nadzom", question: "أكمل: وَكُلُّ مَا لَمْ يَتَّصِلْ بِحَالِ ...", options: ["إِسْنَادُهُ مُنْقَطِعُ الأَوْصَالِ", "فَذَاكَ مَقْطُوعٌ بِهِ قَدْ خَالِ", "إِسْنَادُهُ مُعْضَلُ الأَوْصَالِ"], answer: "إِسْنَادُهُ مُنْقَطِعُ الأَوْصَالِ" },
-
-            // 16. Mu'dhal
-            { type: "nadzom", question: "أكمل البيت: وَالْمُعْضَلُ السَّاقِطُ مِنْهُ ...", options: ["اثْنَانِ (على التوالي)", "وَاحِدٌ", "ثَلاَثَةٌ"], answer: "اثْنَانِ (على التوالي)" },
-
-            // 17. Mudallas
-            { type: "tarif", question: "تدليس الإسناد (النوع الأول) هو:", options: ["إسقاط الشيخ والنقل عمن فوقه بلفظ يوهم السماع", "تغيير اسم الشيخ", "الكذب في المتن"], answer: "إسقاط الشيخ والنقل عمن فوقه بلفظ يوهم السماع" },
+            // Mudallas
+            { type: "tarif", question: "النوع الأول من التدليس (إسقاط الشيخ):", options: ["ينقل عمن فوقه بـ (عن) و (أن)", "يصف أوصافه بما لا ينعرف", "يغير اسم الشيخ"], answer: "ينقل عمن فوقه بـ (عن) و (أن)" },
             { type: "nadzom", question: "أكمل: وَالثَّانِ لاَ يُسْقِطُهُ لَكِنْ يَصِفْ ...", options: ["أَوْصَافَهُ بِمَا بِهِ لاَ يَنْعَرِفْ", "أَحْوَالَهُ بِمَا بِهِ قَدْ يَتَّصِفْ", "أَسْمَاءَهُ بِحَيْثُ لاَ يَنْكَشِفْ"], answer: "أَوْصَافَهُ بِمَا بِهِ لاَ يَنْعَرِفْ" },
 
-            // 18. Shadz
-            { type: "tarif", question: "الحديث الشاذ هو:", options: ["ما خالف فيه المقبول (الثقة) من هو أولى منه", "ما تفرد به الكذاب", "ما كثرت طرقه"], answer: "ما خالف فيه المقبول (الثقة) من هو أولى منه" },
-            { type: "nadzom", question: "أكمل: وَمَا يُخَالِفْ ثِقَةٌ فِيهِ الْمَلأ ...", options: ["فالشَّاذُّ وَالْمَقْلُوبُ قِسْمَانِ تَلا", "فَالشَّاذُّ وَالْمَتْرُوكُ قِسْمَانِ تَلا", "فَالشَّاذُّ وَالْمُنْكَرُ قِسْمَانِ تَلا"], answer: "فالشَّاذُّ وَالْمَقْلُوبُ قِسْمَانِ تَلا" },
+            // Shadz, Maqlub
+            { type: "tarif", question: "الحديث الشاذ هو:", options: ["ما خالف فيه الثقة الملأ (الناس)", "ما تفرد به الكذاب", "ما كثرت طرقه"], answer: "ما خالف فيه الثقة الملأ (الناس)" },
+            { type: "tarif", question: "المقلوب قسمان: إبدال راو براو، و...:", options: ["قلب إسناد لمتن", "قلب الحروف", "قلب المعنى"], answer: "قلب إسناد لمتن" },
 
-            // 19. Maqlub
-            { type: "tarif", question: "المقلوب قسمان، أحدهما إبدال راو براو، والآخر؟", options: ["قلب إسناد لمتن", "قلب الحروف", "قلب المعنى"], answer: "قلب إسناد لمتن" },
-            { type: "nadzom", question: "أكمل: إِبْدَالُ رَاوٍ مَا بِرَاوٍ قِسْمُ ...", options: ["وَقَلْبُ إِسْنَادٍ لِمَتْنٍ قِسْمُ", "وَقَلْبُ مَتْنٍ لِسَنَدٍ قِسْمُ", "وَذَاكَ فِي الْحَدِيثِ أَيْضًا عِلْمُ"], answer: "وَقَلْبُ إِسْنَادٍ لِمَتْنٍ قِسْمُ" },
-
-            // 20. Fard
-            { type: "tarif", question: "الحديث الفرد هو:", options: ["ما قيدته بثقة أو جمع أو قصر على رواية", "ما رواه واحد فقط مطلقاً", "ما ليس له إلا طريق واحد ضعيف"], answer: "ما قيدته بثقة أو جمع أو قصر على رواية" },
-            { type: "nadzom", question: "أكمل: وَالْفَرْدُ مَا قَيَّدْتَهُ بِثِقَةِ ...", options: ["أَوْ جَمْعٍ أَوْ قَصْرٍ عَلَى رِوَايَةِ", "أَوْ جَمْعٍ أَوْ قَصْرٍ عَلَى دِرَايَةِ", "أَوْ جَمْعٍ أَوْ حِفْظٍ عَلَى رِوَايَةِ"], answer: "أَوْ جَمْعٍ أَوْ قَصْرٍ عَلَى رِوَايَةِ" },
-
-            // 21. Mu'allal
-            { type: "tarif", question: "الحديث المعلل هو:", options: ["ما فيه علة غامضة خفية تقدح في صحته", "ما فيه علة ظاهرة", "ما انقطع إسناده"], answer: "ما فيه علة غامضة خفية تقدح في صحته" },
-            { type: "nadzom", question: "أكمل: وَمَا بِعِلَّةٍ غُمُوضٍ أَوْ خَفَا ...", options: ["مُعَلَّلٌ عِنْدَهُمُ قَدْ عُرِفَا", "مُدَلَّسٌ عِنْدَهُمُ قَدْ عُرِفَا", "مُضْطَرِبٌ عِنْدَهُمُ قَدْ عُرِفَا"], answer: "مُعَلَّلٌ عِنْدَهُمُ قَدْ عُرِفَا" },
-
-            // 22. Mudhtharib
+            // Fard, Mu'allal, Mudhtharib
+            { type: "tarif", question: "الحديث الفرد هو:", options: ["ما قيدته بثقة أو جمع أو قصر على رواية", "ما رواه واحد فقط مطلقاً", "ما ليس له إلا طريق واحد"], answer: "ما قيدته بثقة أو جمع أو قصر على رواية" },
+            { type: "tarif", question: "الحديث المعلل هو:", options: ["ما فيه علة غموض أو خفاء", "ما فيه علة ظاهرة", "ما انقطع إسناده"], answer: "ما فيه علة غموض أو خفاء" },
             { type: "nadzom", question: "أكمل: وَذُو اخْتِلاَفِ سَنَدٍ أَوْ مَتْنِ ...", options: ["مُضْطَرِبٌ عِنْدَ أُهَيْلِ الْفَنِّ", "مُخْتَلِفٌ عِنْدَ أُهَيْلِ الْفَنِّ", "فَذَاكَ شَاذٌ بَائِنٌ فَاسْتَغْنِ"], answer: "مُضْطَرِبٌ عِنْدَ أُهَيْلِ الْفَنِّ" },
 
-            // 23. Mudraj
-            { type: "tarif", question: "الحديث المدرج هو:", options: ["ما أدخل في الحديث من كلام الرواة موصولاً", "ما أدرج في باب ليس منه", "ما رواه الأقران"], answer: "ما أدخل في الحديث من كلام الرواة موصولاً" },
+            // Mudraj, Mudabbaj
             { type: "nadzom", question: "أكمل: وَالْمُدْرَجَاتُ فِي الحَدِيثِ مَا أَتَتْ ...", options: ["مِنْ بَعْضِ أَلْفَاظِ الرُّوَاةِ اتَّصَلَتْ", "مِنْ قَوْلِ بَعْضِ التَّابِعِينَ نُقِلَتْ", "فِي آخِرِ الْمَتْنِ وَقَدْ تَفَصَّلَتْ"], answer: "مِنْ بَعْضِ أَلْفَاظِ الرُّوَاةِ اتَّصَلَتْ" },
+            { type: "tarif", question: "الحديث المدبج هو:", options: ["ما روى كل قرين عن أخيه", "ما رواه الشيخ عن تلميذه", "ما رواه التلميذ عن شيخه"], answer: "ما روى كل قرين عن أخيه" },
 
-            // 24. Mudabbaj
-            { type: "tarif", question: "الحديث المدبج هو:", options: ["ما روى كل قرين عن أخيه (أقران)", "ما رواه الشيخ عن تلميذه", "ما رواه التلميذ عن شيخه"], answer: "ما روى كل قرين عن أخيه (أقران)" },
-            { type: "nadzom", question: "أكمل: وَمَا رَوَى كُلُّ قَرِينٍ عَنْ أَخِهْ ...", options: ["مُدَبَّجٌ فَاعْرِفْهُ حَقًّا وَانْتَخِهْ", "مُسَلْسَلٌ فَاعْرِفْهُ حَقًّا وَانْتَخِهْ", "مُوَافِقٌ فَاعْرِفْهُ حَقًّا وَانْتَخِهْ"], answer: "مُدَبَّجٌ فَاعْرِفْهُ حَقًّا وَانْتَخِهْ" },
-
-            // 25. Muttafiq & Muftariq
-            { type: "tarif", question: "المتفق والمفترق هو:", options: ["ما اتفق لفظاً وخطاً، وافترق مسمى (شخصاً)", "ما اتفق خطاً واختلف لفظاً", "ما اختلف لفظاً وخطاً"], answer: "ما اتفق لفظاً وخطاً، وافترق مسمى (شخصاً)" },
-            { type: "nadzom", question: "أكمل: مُتَّفِقٌ لَفْظاً وَخَطاً مُتَّفِقْ ...", options: ["وَضِدُّهُ فِيمَا ذَكَرْنَا الْمُفْتَرِقْ", "وَضِدُّهُ فِيمَا ذَكَرْنَا الْمُخْتَلِفْ", "وَعَكْسُهُ فِيمَا ذَكَرْنَا الْمُفْتَرِقْ"], answer: "وَضِدُّهُ فِيمَا ذَكَرْنَا الْمُفْتَرِقْ" },
-
-            // 26. Mu'talif & Mukhtalif
-            { type: "tarif", question: "المؤتلف والمختلف هو:", options: ["ما اتفق خطاً (صورة) واختلف لفظاً (نطقاً)", "ما اتفق لفظاً فقط", "ما اتفق لفظاً وخطاً"], answer: "ما اتفق خطاً (صورة) واختلف لفظاً (نطقاً)" },
+            // Muttafiq, Muftariq, Mu'talif, Mukhtalif
+            { type: "tarif", question: "المتفق والمفترق هو:", options: ["متفق لفظاً وخطاً، ومفترق مسمى (شخصاً)", "متفق خطاً واختلف لفظاً", "مختلف لفظاً وخطاً"], answer: "متفق لفظاً وخطاً، ومفترق مسمى (شخصاً)" },
             { type: "nadzom", question: "أكمل: مُؤْتَلِفٌ مُتَّفِقُ الخَطِّ فَقَطْ ...", options: ["وَضِدُّهُ مُخْتَلِفُ فَاخْشَ الْغَلَطْ", "وَضِدُّهُ مُفْتَرِقُ فَاخْشَ الْغَلَطْ", "وَعَكْسُهُ مُخْتَلِفُ فَاخْشَ الشَّطَطْ"], answer: "وَضِدُّهُ مُخْتَلِفُ فَاخْشَ الْغَلَطْ" },
 
-            // 27. Munkar
-            { type: "tarif", question: "الحديث المنكر (بحسب الناظم) هو:", options: ["الفرد الذي لا يحتمل حال راويه التفرد", "ما خالف فيه الثقة من هو أوثق منه", "ما اتفق العلماء على ضعفه"], answer: "الفرد الذي لا يحتمل حال راويه التفرد" },
-            { type: "nadzom", question: "أكمل: وَالْمُنْكَرُ الْفَرْدُ بِهِ رَاوٍ غَدَا ...", options: ["تَعْدِيلُهُ لاَ يَحْمِلُ التَّفَرُّدَا", "وَلَيْسَ فِي مَتْنِ الْحَدِيثِ شَاهِدَا", "وَضَعْفُهُ قَدْ كَانَ فِيهِ زَائِدَا"], answer: "تَعْدِيلُهُ لاَ يَحْمِلُ التَّفَرُّدَا" },
-
-            // 28. Matruk
-            { type: "tarif", question: "الحديث المتروك هو:", options: ["ما انفرد به واحد وأجمعوا على ضعفه", "ما كذب راويه متعمداً", "ما كان فيه راو مجهول"], answer: "ما انفرد به واحد وأجمعوا على ضعفه" },
+            // Munkar, Matruk, Maudhu'
+            { type: "tarif", question: "الحديث المنكر (عند الناظم) هو:", options: ["الفرد الذي لا يحتمل تعديل راويه التفرد", "ما خالف فيه الثقة من هو أوثق منه", "ما اتفق العلماء على ضعفه"], answer: "الفرد الذي لا يحتمل تعديل راويه التفرد" },
             { type: "nadzom", question: "أكمل: مَتْرُوكُهُ مَا وَاحِدٌ بِهِ انْفَرَدْ ...", options: ["وَأَجْمَعُوا لِضَعْفِهِ فَهُوَ كَرَدْ", "وَلَمْ يَكُنْ عِنْدَهُمُ بِمُعْتَمَدْ", "وَكَانَ فِي رِوَايَةٍ لاَ يُعْتَضَدْ"], answer: "وَأَجْمَعُوا لِضَعْفِهِ فَهُوَ كَرَدْ" },
+            { type: "tarif", question: "الحديث الموضوع هو:", options: ["الكذب المختلق المصنوع على النبي", "الحديث الضعيف جداً", "خطأ الراوي الثقة"], answer: "الكذب المختلق المصنوع على النبي" },
 
-            // 29. Maudhu'
-            { type: "tarif", question: "الحديث الموضوع هو:", options: ["الكذب المختلق المصنوع على النبي ﷺ", "الحديث الضعيف جداً", "خطأ الراوي الثقة"], answer: "الكذب المختلق المصنوع على النبي ﷺ" },
-            { type: "nadzom", question: "أكمل: وَالْكَذِبُ الْمُخْتَلَقُ المَصْنُوعُ ...", options: ["عَلَى النَّبِيِّ فَذَلِكَ الْمَوْضُوعُ", "عَلَى الرَّسُولِ فَهُوَ الْمَرْفُوعُ", "هُوَ الَّذِي يُقَالُ لَهُ الْمَصْنُوعُ"], answer: "عَلَى النَّبِيِّ فَذَلِكَ الْمَوْضُوعُ" },
-
-            // 30. Khatimah
-            { type: "nadzom", question: "بماذا وصف الناظم منظومته؟", options: ["كَالْجَوْهَرِ المَكْنُونِ", "كَاللُّؤْلُؤِ الْمَنْثُورِ", "كَالذَّهَبِ الْمَوْزُونِ"], answer: "كَالْجَوْهَرِ المَكْنُونِ" },
-            { type: "nadzom", question: "كم عدد أبيات المنظومة كما ذكر الناظم؟", options: ["فوق الثلاثين بأربع (34)", "أربعون بيتاً (40)", "خمسون بيتاً (50)"], answer: "فوق الثلاثين بأربع (34)" },
-            { type: "nadzom", question: "أكمل البيت: أَقْسَامُهَا تَمَّتْ بِخَيْرٍ ...", options: ["خُتِمَتْ", "عُلِمَتْ", "فُهِمَتْ"], answer: "خُتِمَتْ" }
+            // Penutup
+            { type: "nadzom", question: "بماذا شبه الناظم منظومته؟", options: ["كَالْجَوْهَرِ المَكْنُونِ", "كَاللُّؤْلُؤِ الْمَنْثُورِ", "كَالذَّهَبِ الْمَوْزُونِ"], answer: "كَالْجَوْهَرِ المَكْنُونِ" },
+            { type: "nadzom", question: "كم عدد أبيات المنظومة؟", options: ["فوق الثلاثين بأربع (34)", "أربعون بيتاً (40)", "خمسون بيتاً (50)"], answer: "فوق الثلاثين بأربع (34)" }
         ];
 
         // --- COMPONENTS ---
 
         const Button = ({ children, onClick, variant = "primary", className = "", disabled = false, fullWidth = false }) => {
-            let base = "px-4 py-3 rounded-xl font-bold transition-transform active:scale-95 flex items-center justify-center gap-2 ";
+            let base = "px-4 py-3 rounded-xl font-bold transition-transform active:scale-95 flex items-center justify-center gap-2 select-none ";
             if (fullWidth) base += "w-full ";
             
-            if (variant === "primary") base += "bg-primary-500 text-white shadow-md hover:bg-primary-600 ";
+            if (variant === "primary") base += "bg-primary-600 text-white shadow-lg shadow-primary-200 hover:bg-primary-700 ";
             if (variant === "secondary") base += "bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 ";
             if (variant === "outline") base += "border-2 border-primary-500 text-primary-600 hover:bg-primary-50 ";
             if (variant === "ghost") base += "text-slate-500 hover:bg-slate-100 hover:text-slate-700 ";
             
             return (
-                <button onClick={onClick} disabled={disabled} className={`${base} ${className} disabled:opacity-50`}>
+                <button onClick={onClick} disabled={disabled} className={`${base} ${className} disabled:opacity-50 disabled:scale-100`}>
                     {children}
                 </button>
             );
@@ -259,8 +203,11 @@
             const [timeLeft, setTimeLeft] = React.useState(duration);
 
             React.useEffect(() => {
-                if (!isActive) return;
                 setTimeLeft(duration);
+            }, [duration, isActive]); // Reset whenever duration or active state changes
+
+            React.useEffect(() => {
+                if (!isActive) return;
                 
                 const interval = setInterval(() => {
                     setTimeLeft((prev) => {
@@ -274,12 +221,14 @@
                 }, 1000);
 
                 return () => clearInterval(interval);
-            }, [isActive, duration]); 
+            }, [isActive, duration, onTimeUp]);
 
+            const percentage = (timeLeft / duration) * 100;
             const color = timeLeft < 5 ? 'text-red-500' : 'text-primary-600';
 
             return (
-                <div className="flex items-center gap-2 font-bold bg-white px-4 py-2 rounded-full shadow-sm border border-slate-100">
+                <div className="flex items-center gap-2 font-bold bg-white px-3 py-1.5 rounded-full shadow-sm border border-slate-100 relative overflow-hidden">
+                    <div className="absolute bottom-0 left-0 h-1 bg-primary-500 transition-all duration-1000 ease-linear" style={{ width: `${percentage}%`, opacity: 0.3 }}></div>
                     <Icons.Clock />
                     <span className={color}>{timeLeft}s</span>
                 </div>
@@ -289,7 +238,7 @@
         const PillOption = ({ label, selected, onClick }) => (
             <button 
                 onClick={onClick}
-                className={`flex-1 py-2 px-3 rounded-lg text-sm font-semibold transition-all ${selected ? 'bg-primary-500 text-white shadow-md' : 'bg-slate-100 text-slate-500 hover:bg-slate-200'}`}
+                className={`flex-1 py-2 px-3 rounded-lg text-sm font-semibold transition-all border ${selected ? 'bg-primary-600 text-white border-primary-600 shadow-md' : 'bg-white text-slate-500 border-slate-200 hover:bg-slate-50'}`}
             >
                 {label}
             </button>
@@ -297,35 +246,54 @@
 
         // --- VIEWS ---
 
+        // 1. HOME VIEW
         const HomeView = ({ onStart, onHifz }) => {
             const [count, setCount] = React.useState(10);
+            const [timerDur, setTimerDur] = React.useState(20);
             const [type, setType] = React.useState('all');
 
             return (
-                <div className="min-h-screen flex items-center justify-center p-6 fade-in">
+                <div className="min-h-screen flex items-center justify-center p-6 fade-enter-active">
                     <div className="w-full max-w-md bg-white rounded-3xl shadow-xl p-8 text-center border-t-8 border-primary-500">
-                        <div className="mb-6 flex justify-center">
-                            <div className="bg-primary-100 p-4 rounded-full text-primary-600">
-                                <Icons.Book />
+                        <div className="mb-4 flex justify-center">
+                            <div className="bg-primary-50 p-4 rounded-full text-primary-600">
+                                <Icons.BookOpen />
                             </div>
                         </div>
                         <h1 className="text-3xl font-bold text-slate-800 mb-2">Baiquniyah</h1>
-                        <p className="text-slate-500 mb-8">Ikhtibar Mustholah Hadist</p>
+                        <p className="text-slate-500 mb-8 text-sm font-medium">Ultimate Hifz & Quiz Edition</p>
                         
-                        {/* Settings */}
                         <div className="space-y-6 mb-8 text-left">
+                            {/* Jumlah Soal */}
                             <div>
-                                <label className="block text-xs font-bold text-slate-400 uppercase mb-3 tracking-wider">Jumlah Soal</label>
+                                <label className="block text-xs font-bold text-slate-400 uppercase mb-2 tracking-wider">Jumlah Soal</label>
                                 <div className="flex gap-2">
                                     {[5, 10, 20].map(n => (
                                         <PillOption key={n} label={n} selected={count === n} onClick={() => setCount(n)} />
                                     ))}
-                                    <PillOption label="Semua" selected={count === 65} onClick={() => setCount(65)} />
+                                    <PillOption label="Semua" selected={count === 50} onClick={() => setCount(50)} />
                                 </div>
                             </div>
 
+                            {/* Timer Selection */}
                             <div>
-                                <label className="block text-xs font-bold text-slate-400 uppercase mb-3 tracking-wider">Kategori</label>
+                                <label className="block text-xs font-bold text-slate-400 uppercase mb-2 tracking-wider">Waktu per Soal (Detik)</label>
+                                <div className="grid grid-cols-5 gap-2">
+                                    {[10, 15, 20, 25, 30].map(t => (
+                                        <button 
+                                            key={t}
+                                            onClick={() => setTimerDur(t)}
+                                            className={`py-2 rounded-lg text-sm font-bold border ${timerDur === t ? 'bg-accent-500 text-white border-accent-500' : 'bg-white text-slate-500 border-slate-200'}`}
+                                        >
+                                            {t}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Kategori */}
+                            <div>
+                                <label className="block text-xs font-bold text-slate-400 uppercase mb-2 tracking-wider">Kategori</label>
                                 <div className="flex gap-2">
                                     <PillOption label="Semua" selected={type === 'all'} onClick={() => setType('all')} />
                                     <PillOption label="Nadzom" selected={type === 'nadzom'} onClick={() => setType('nadzom')} />
@@ -335,11 +303,11 @@
                         </div>
 
                         <div className="space-y-3">
-                            <Button onClick={() => onStart({count, type})} className="w-full text-lg shadow-lg shadow-primary-500/30">
+                            <Button onClick={() => onStart({count, type, timer: timerDur})} className="w-full text-lg shadow-lg shadow-primary-500/20" fullWidth>
                                 Mulai Kuis
                             </Button>
-                            <Button variant="ghost" onClick={onHifz} className="w-full">
-                                Baca Nadzom (Hifz)
+                            <Button variant="secondary" onClick={onHifz} className="w-full" fullWidth>
+                                Hafalan (Checklist)
                             </Button>
                         </div>
                     </div>
@@ -347,40 +315,95 @@
             );
         };
 
-        const HifzView = ({ onBack }) => (
-            <div className="min-h-screen bg-slate-50 p-4 md:p-8 fade-in">
-                <div className="max-w-3xl mx-auto">
-                    <div className="flex items-center justify-between mb-6 sticky top-0 bg-slate-50/95 py-4 z-10 border-b border-slate-200 shadow-sm backdrop-blur-sm">
-                        <button onClick={onBack} className="flex items-center gap-2 text-slate-600 hover:text-primary-600 font-bold px-3 py-1 rounded-lg hover:bg-slate-100 transition-colors">
-                            <Icons.Home /> Kembali
-                        </button>
-                        <h2 className="text-xl font-bold text-slate-800">Matn Al-Baiquniyah</h2>
-                    </div>
+        // 2. HIFZ VIEW (CHECKLIST)
+        const HifzView = ({ onBack }) => {
+            // Load state from localStorage
+            const [memorized, setMemorized] = React.useState(() => {
+                const saved = localStorage.getItem('baiquniyah_hifz');
+                return saved ? JSON.parse(saved) : [];
+            });
 
-                    <div className="space-y-4 pb-12">
-                        {nadzomFull.map((verse, i) => (
-                            <div key={i} className="card p-6 hover:shadow-md transition-shadow">
-                                <div className="flex justify-between items-start gap-4">
-                                    <span className="bg-primary-100 text-primary-600 text-xs font-bold px-2 py-1 rounded-md h-fit">
-                                        {i + 1}
-                                    </span>
-                                    <div className="w-full">
-                                        <p className="font-arabic text-2xl text-right text-slate-800 mb-3 leading-loose" dir="rtl">
-                                            {verse.ar}
-                                        </p>
-                                        <div className="h-px w-full bg-slate-100 mb-3"></div>
-                                        <p className="text-slate-500 text-sm italic text-right">
-                                            {verse.id}
-                                        </p>
-                                    </div>
+            React.useEffect(() => {
+                localStorage.setItem('baiquniyah_hifz', JSON.stringify(memorized));
+            }, [memorized]);
+
+            const toggleMemorized = (id) => {
+                setMemorized(prev => 
+                    prev.includes(id) ? prev.filter(item => item !== id) : [...prev, id]
+                );
+            };
+
+            const progress = Math.round((memorized.length / nadzomData.length) * 100);
+
+            return (
+                <div className="min-h-screen bg-slate-50 p-4 md:p-8 fade-enter-active">
+                    <div className="max-w-3xl mx-auto pb-20">
+                        {/* Header */}
+                        <div className="flex flex-col gap-4 mb-6 sticky top-0 bg-slate-50/95 py-4 z-20 border-b border-slate-200 backdrop-blur-sm">
+                            <div className="flex items-center justify-between">
+                                <button onClick={onBack} className="flex items-center gap-2 text-slate-600 hover:text-primary-600 font-bold px-3 py-1 rounded-lg hover:bg-white transition-colors">
+                                    <Icons.ChevronLeft /> Kembali
+                                </button>
+                                <h2 className="text-xl font-bold text-slate-800">Cek Hafalan</h2>
+                            </div>
+                            
+                            {/* Progress Bar */}
+                            <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
+                                <div className="flex justify-between text-sm font-bold text-slate-600 mb-2">
+                                    <span>Progres Hafalan</span>
+                                    <span className="text-primary-600">{memorized.length}/{nadzomData.length} ({progress}%)</span>
+                                </div>
+                                <div className="w-full bg-slate-100 rounded-full h-3 overflow-hidden">
+                                    <div className="bg-primary-500 h-3 rounded-full transition-all duration-500" style={{width: `${progress}%`}}></div>
                                 </div>
                             </div>
-                        ))}
+                        </div>
+
+                        {/* List */}
+                        <div className="space-y-4">
+                            {nadzomData.map((verse) => {
+                                const isChecked = memorized.includes(verse.id);
+                                return (
+                                    <div key={verse.id} className={`p-6 rounded-2xl border transition-all duration-300 ${isChecked ? 'bg-primary-50 border-primary-200 shadow-sm' : 'bg-white border-slate-200 hover:shadow-md'}`}>
+                                        <div className="flex items-start gap-4">
+                                            {/* Checkbox Wrapper */}
+                                            <label className="checkbox-wrapper cursor-pointer relative pt-1">
+                                                <input 
+                                                    type="checkbox" 
+                                                    className="hidden" 
+                                                    checked={isChecked} 
+                                                    onChange={() => toggleMemorized(verse.id)} 
+                                                />
+                                                <div className={`w-6 h-6 rounded-md border-2 flex items-center justify-center transition-colors ${isChecked ? 'bg-primary-500 border-primary-500' : 'border-slate-300 bg-slate-50'}`}>
+                                                    <Icons.Check />
+                                                </div>
+                                            </label>
+
+                                            <div className="flex-1">
+                                                <div className="flex justify-between items-center mb-2">
+                                                    <span className={`text-xs font-bold px-2 py-0.5 rounded ${isChecked ? 'bg-primary-200 text-primary-700' : 'bg-slate-100 text-slate-500'}`}>
+                                                        Bait {verse.id}
+                                                    </span>
+                                                </div>
+                                                <p className={`font-arabic text-2xl text-right mb-3 leading-loose ${isChecked ? 'text-primary-900' : 'text-slate-800'}`} dir="rtl">
+                                                    {verse.ar}
+                                                </p>
+                                                <div className={`h-px w-full mb-3 ${isChecked ? 'bg-primary-200' : 'bg-slate-100'}`}></div>
+                                                <p className={`text-sm italic ${isChecked ? 'text-primary-700' : 'text-slate-500'}`}>
+                                                    {verse.tr}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
                     </div>
                 </div>
-            </div>
-        );
+            );
+        };
 
+        // 3. QUIZ VIEW
         const QuizView = ({ config, onFinish }) => {
             const [qIndex, setQIndex] = React.useState(0);
             const [score, setScore] = React.useState(0);
@@ -388,22 +411,18 @@
             const [timerActive, setTimerActive] = React.useState(false);
             const [selectedOption, setSelectedOption] = React.useState(null);
             const [isAnswered, setIsAnswered] = React.useState(false);
+            const [loading, setLoading] = React.useState(true);
 
+            // Init Questions
             React.useEffect(() => {
-                // Filter first
                 let filtered = questionsData;
                 if(config.type !== 'all') {
                     filtered = questionsData.filter(q => q.type === config.type);
                 }
-
-                // Shuffle
                 const shuffled = [...filtered].sort(() => 0.5 - Math.random());
-                
-                // Slice based on count (if requested count is larger than available, take all available)
                 const limit = Math.min(config.count, shuffled.length);
-                const finalQuestions = shuffled.slice(0, limit);
-                
-                setShuffledQuestions(finalQuestions);
+                setShuffledQuestions(shuffled.slice(0, limit));
+                setLoading(false);
                 setTimerActive(true);
             }, [config]);
 
@@ -422,7 +441,6 @@
                 if (isAnswered) return;
                 setIsAnswered(true);
                 setTimerActive(false);
-                // No selection, counts as wrong
             };
 
             const handleNext = () => {
@@ -436,51 +454,54 @@
                 }
             };
 
-            if (shuffledQuestions.length === 0) return <div className="min-h-screen flex items-center justify-center font-bold text-slate-400">Memuat Soal...</div>;
+            if (loading || shuffledQuestions.length === 0) return <div className="min-h-screen flex items-center justify-center text-slate-500">Memuat Soal...</div>;
 
             const currentQ = shuffledQuestions[qIndex];
             const isLast = qIndex === shuffledQuestions.length - 1;
 
             return (
-                <div className="min-h-screen flex items-center justify-center p-4 fade-in">
+                <div className="min-h-screen flex items-center justify-center p-4 fade-enter-active bg-slate-100">
                     <div className="w-full max-w-2xl">
-                        {/* Header */}
-                        <div className="flex justify-between items-center mb-6">
-                            <div className="text-slate-500 font-bold">
-                                Soal {qIndex + 1} <span className="text-slate-300">/ {shuffledQuestions.length}</span>
+                        {/* Header Stats */}
+                        <div className="flex justify-between items-center mb-6 px-2">
+                            <div className="flex flex-col">
+                                <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Soal</span>
+                                <span className="text-xl font-bold text-slate-700">{qIndex + 1} <span className="text-slate-400 text-sm">/ {shuffledQuestions.length}</span></span>
                             </div>
-                            <Timer duration={20} isActive={timerActive} onTimeUp={handleTimeUp} />
+                            <Timer duration={config.timer} isActive={timerActive} onTimeUp={handleTimeUp} />
                         </div>
 
-                        {/* Card */}
-                        <div className="card p-8 mb-6 relative overflow-hidden">
-                            {/* Progress bar background hint */}
-                            <div className="absolute top-0 left-0 h-1 bg-primary-500 transition-all duration-300" style={{width: `${((qIndex + 1) / shuffledQuestions.length) * 100}%`}}></div>
+                        {/* Question Card */}
+                        <div className="glass-card rounded-3xl p-6 md:p-10 mb-6 relative overflow-hidden bg-white">
+                            {/* Progress Line */}
+                            <div className="absolute top-0 left-0 h-1.5 bg-slate-100 w-full">
+                                <div className="h-full bg-primary-500 transition-all duration-300" style={{width: `${((qIndex + 1) / shuffledQuestions.length) * 100}%`}}></div>
+                            </div>
 
-                            <div className="flex justify-between items-center mb-4 mt-2">
-                                <span className={`text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider ${currentQ.type === 'nadzom' ? 'bg-secondary-100 text-secondary-500' : 'bg-orange-100 text-orange-500'}`}>
-                                    {currentQ.type === 'nadzom' ? 'Sambung Ayat' : 'Ta\'rif / Definisi'}
+                            <div className="mt-4 mb-6">
+                                <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${currentQ.type === 'nadzom' ? 'bg-blue-50 text-blue-600' : 'bg-orange-50 text-orange-600'}`}>
+                                    {currentQ.type === 'nadzom' ? 'Sambung Ayat' : 'Definisi'}
                                 </span>
                             </div>
 
-                            <h3 className="font-arabic text-3xl text-right mb-8 leading-loose" dir="rtl">
+                            <h3 className="font-arabic text-3xl md:text-4xl text-right mb-10 leading-relaxed text-slate-800" dir="rtl">
                                 {currentQ.question}
                             </h3>
 
                             <div className="space-y-3">
                                 {currentQ.options.map((opt, i) => {
-                                    let btnClass = "w-full p-4 rounded-xl text-right font-arabic text-lg border-2 transition-all ";
+                                    let btnClass = "w-full p-4 md:p-5 rounded-2xl text-right font-arabic text-xl border-2 transition-all duration-200 outline-none ";
                                     
                                     if (isAnswered) {
                                         if (opt === currentQ.answer) {
-                                            btnClass += "border-primary-500 bg-primary-100 text-primary-600"; // Correct
+                                            btnClass += "border-primary-500 bg-primary-50 text-primary-700 shadow-[0_0_0_1px_#10b981]"; 
                                         } else if (opt === selectedOption) {
-                                            btnClass += "border-red-400 bg-red-50 text-red-500"; // Wrong selection
+                                            btnClass += "border-red-400 bg-red-50 text-red-600";
                                         } else {
-                                            btnClass += "border-slate-100 text-slate-400 opacity-50"; // Not selected
+                                            btnClass += "border-slate-100 text-slate-300 opacity-50"; 
                                         }
                                     } else {
-                                        btnClass += "border-slate-100 hover:border-primary-500 hover:bg-slate-50 text-slate-700";
+                                        btnClass += "border-slate-200 bg-white hover:border-primary-400 hover:bg-slate-50 text-slate-700 hover:shadow-md";
                                     }
 
                                     return (
@@ -489,6 +510,7 @@
                                             onClick={() => handleOptionClick(opt)}
                                             className={btnClass}
                                             dir="rtl"
+                                            disabled={isAnswered}
                                         >
                                             {opt}
                                         </button>
@@ -498,45 +520,51 @@
                         </div>
 
                         {/* Footer Action */}
-                        {isAnswered && (
-                            <div className="flex justify-end animate-bounce">
-                                <Button onClick={handleNext} className="px-8 shadow-lg">
+                        <div className="h-16 flex justify-end">
+                            {isAnswered && (
+                                <Button onClick={handleNext} className="px-8 text-lg shadow-xl shadow-primary-500/20 animate-bounce">
                                     {isLast ? "Lihat Hasil" : "Lanjut"} <Icons.Play />
                                 </Button>
-                            </div>
-                        )}
+                            )}
+                        </div>
                     </div>
                 </div>
             );
         };
 
+        // 4. RESULT VIEW
         const ResultView = ({ score, total, onRestart }) => {
             const percentage = Math.round((score / total) * 100);
-            let message = "Belajar Lagi Yuk!";
-            if(percentage === 100) message = "Mumtaz! Sempurna!";
-            else if(percentage >= 80) message = "Jayyid Jiddan! (Sangat Baik)";
-            else if(percentage >= 60) message = "Jayyid! (Baik)";
+            let message = "Jangan Menyerah!";
+            let iconColor = "text-red-500 bg-red-100";
+            
+            if(percentage === 100) { message = "Mumtaz! Sempurna!"; iconColor = "text-primary-600 bg-primary-100"; }
+            else if(percentage >= 80) { message = "Jayyid Jiddan!"; iconColor = "text-primary-500 bg-primary-50"; }
+            else if(percentage >= 60) { message = "Jayyid! (Baik)"; iconColor = "text-blue-500 bg-blue-50"; }
             
             return (
-                <div className="min-h-screen flex items-center justify-center p-6 fade-in">
-                    <div className="card w-full max-w-md p-10 text-center">
-                        <div className="mb-6 inline-flex p-4 bg-yellow-100 rounded-full text-yellow-600">
-                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+                <div className="min-h-screen flex items-center justify-center p-6 fade-enter-active">
+                    <div className="w-full max-w-md bg-white rounded-3xl shadow-xl p-10 text-center">
+                        <div className={`mb-6 inline-flex p-5 rounded-full ${iconColor} mb-6`}>
+                             <Icons.CheckCircle />
                         </div>
                         
-                        <h2 className="text-5xl font-bold text-slate-800 mb-2">{score} / {total}</h2>
-                        <p className="text-xl font-bold text-primary-600 mb-1">{message}</p>
-                        <p className="text-slate-400 mb-8 text-sm">Nilai Akhir Kamu</p>
+                        <h2 className="text-6xl font-extrabold text-slate-800 mb-2">{score}<span className="text-3xl text-slate-300">/{total}</span></h2>
+                        <p className="text-xl font-bold text-slate-700 mb-1">{message}</p>
+                        <p className="text-slate-400 mb-10 text-sm">Skor Akhir Kamu</p>
 
-                        <div className="bg-slate-50 rounded-xl p-4 mb-8">
-                            <div className="w-full bg-slate-200 rounded-full h-2.5 mb-2">
-                                <div className="bg-primary-500 h-2.5 rounded-full transition-all duration-1000" style={{width: `${percentage}%`}}></div>
+                        <div className="bg-slate-50 rounded-2xl p-6 mb-8 border border-slate-100">
+                            <div className="flex justify-between text-xs font-bold text-slate-400 uppercase mb-2">
+                                <span>Akurasi</span>
+                                <span>{percentage}%</span>
                             </div>
-                            <p className="text-sm text-slate-400">{percentage}% Benar</p>
+                            <div className="w-full bg-slate-200 rounded-full h-3 mb-2 overflow-hidden">
+                                <div className={`h-3 rounded-full transition-all duration-1000 ${percentage >= 60 ? 'bg-primary-500' : 'bg-red-400'}`} style={{width: `${percentage}%`}}></div>
+                            </div>
                         </div>
 
-                        <Button onClick={onRestart} className="w-full">
-                            <Icons.Refresh /> Main Lagi
+                        <Button onClick={onRestart} className="w-full" fullWidth>
+                            Main Lagi
                         </Button>
                     </div>
                 </div>
