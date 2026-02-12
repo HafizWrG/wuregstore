@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baiquniyah Pro - Hafalan & Kuis</title>
+    <title>Al-Baiquniyah</title>
     
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -109,16 +109,13 @@
             { id: 31, ar: "مَتْرُوكُهُ مَا وَاحِدٌ بِهِ انْفَرَدْ ... وَأَجْمَعُوا لِضَعْفِهِ فَهُوَ كَرَدْ", tr: "Matruk adalah yang satu orang bersendiri dengannya, dan mereka sepakat atas kelemahannya, maka ia tertolak." },
             { id: 32, ar: "وَالْكَذِبُ الْمُخْتَلَقُ المَصْنُوعُ ... عَلَى النَّبِيِّ فَذَلِكَ الْمَوْضُوعُ", tr: "Dan dusta yang direkayasa dan dibuat-buat atas nama Nabi, maka itulah Maudhu'." },
             { id: 33, ar: "وَقَدْ أَتَتْ كَالْجَوْهَرِ المَكْنُونِ ... سَمَّيْتُهَا مَنْظُومَةَ الْبَيْقُونِي", tr: "Dan ia telah datang bagaikan mutiara yang tersimpan, aku namakan ia Manzhumah Baiquni." },
-            { id: 34, ar: "فَوْقَ الثَّلاَثِينَ بِأَرْبَعٍ أَتَتْ ... أقْسَامُهَا تَمَّتْ بِخَيْرٍ خُتِمَتْ", tr: "Ia datang lebih empat di atas tiga puluh (34 bait), pembagiannya telah sempurna, ditutup dengan kebaikan." }
+            { id: 34, ar: "فَوْقَ الثَّلاَثِينَ بِأَرْبَعٍ أَتَتْ ... أبيَاتُهَا تَمَّتْ بِخَيْرٍ خُتِمَتْ", tr: "Ia datang lebih empat di atas tiga puluh (34 bait), bait telah sempurna, ditutup dengan kebaikan." }
         ];
 
         // --- DATA SOAL (Strict Matn Base) ---
         const questionsData = [
-            // Mukadimah
-            { type: "nadzom", question: "أكمل: أَبْدَأُ بِالْحَمْدِ مُصَلِّياً عَلَى ...", options: ["مُحَمَّدٍ خَيْرِ نَبِيٍّ أُرْسِلا", "وَآلِهِ وَصَحْبِهِ وَمَنْ تَلَا", "نَبِيِّنَا الْمُصْطَفَى خَيْرِ الْوَرَى"], answer: "مُحَمَّدٍ خَيْرِ نَبِيٍّ أُرْسِلا" },
+            { type: "nadzom", question: "أكمل: أَبْدَأُ بِالْحَمْدِ مُصَلِّياً عَلَى ...", options: ["مُحَمَّدٍ خَيْرِ نَبِيٍّ أُرْسِلا", "نَبِيِّنَا الْمُصْطَفَى خَيْرِ الْوَرَى", "وَآلِهِ وَصَحْبِهِ وَمَنْ تَلَا"], answer: "مُحَمَّدٍ خَيْرِ نَبِيٍّ أُرْسِلا" },
             { type: "nadzom", question: "أكمل: وَذِي مِنَ أقْسَامِ الحَدِيثِ عِدَّه ...", options: ["وَكُلُّ وَاحِدٍ أَتَى وَحَدَّه", "وَنَظْمُهَا جَاءَكَ فِي عُجَالَة", "خُذْهَا هَدِيَّةً مِنَ الرِّسَالَة"], answer: "وَكُلُّ وَاحِدٍ أَتَى وَحَدَّه" },
-            
-            // Sahih & Hasan
             { type: "tarif", question: "بم عرف الناظم الحديث الصحيح؟", options: ["ما اتصل سنده ولم يشذ أو يعل", "ما رواه العدل الضابط عن مثله فقط", "ما صح سنده ومتنه عند العلماء"], answer: "ما اتصل سنده ولم يشذ أو يعل" },
             { type: "nadzom", question: "أكمل وصف راوي الصحيح: يَرْوِيهِ عَدْلٌ ضَابِطٌ عَنْ مِثْلِهِ ...", options: ["مُعْتَمَدٌ فِي ضَبْطِهِ وَنَقْلِهِ", "مُشْتَهَرٌ بِالصِّدْقِ فِي مَقَالِهِ", "وَلَيْسَ فِي إِسْنَادِهِ مَا يُكْرَهُ"], answer: "مُعْتَمَدٌ فِي ضَبْطِهِ وَنَقْلِهِ" },
             { type: "tarif", question: "الحديث الحسن عند الناظم هو:", options: ["المعروف طرقاً وغدت رجاله لا كالصحيح اشتهرت", "ما اتصل سنده بنقل العدل الضابط", "ما خف ضبط راويه"], answer: "المعروف طرقاً وغدت رجاله لا كالصحيح اشتهرت" },
@@ -260,9 +257,8 @@
                                 <Icons.BookOpen />
                             </div>
                         </div>
-                        <h1 className="text-3xl font-bold text-slate-800 mb-2">Baiquniyah</h1>
-                        <p className="text-slate-500 mb-8 text-sm font-medium">Ultimate Hifz & Quiz Edition</p>
-                        
+                        <h1 className="text-3xl font-bold text-slate-800 mb-2">نظم البيقنية</h1>
+                        <p className="text-slate-500 mb-8 text-sm font-medium">للحفظ و الامتحان</p>
                         <div className="space-y-6 mb-8 text-left">
                             {/* Jumlah Soal */}
                             <div>
@@ -307,7 +303,7 @@
                                 Mulai Kuis
                             </Button>
                             <Button variant="secondary" onClick={onHifz} className="w-full" fullWidth>
-                                Hafalan (Checklist)
+                                Hafalan
                             </Button>
                         </div>
                     </div>
@@ -551,7 +547,7 @@
                         
                         <h2 className="text-6xl font-extrabold text-slate-800 mb-2">{score}<span className="text-3xl text-slate-300">/{total}</span></h2>
                         <p className="text-xl font-bold text-slate-700 mb-1">{message}</p>
-                        <p className="text-slate-400 mb-10 text-sm">Skor Akhir Kamu</p>
+                        <p className="text-slate-400 mb-10 text-sm">Skor Akhir</p>
 
                         <div className="bg-slate-50 rounded-2xl p-6 mb-8 border border-slate-100">
                             <div className="flex justify-between text-xs font-bold text-slate-400 uppercase mb-2">
@@ -564,7 +560,7 @@
                         </div>
 
                         <Button onClick={onRestart} className="w-full" fullWidth>
-                            Main Lagi
+                            Mulai lagi
                         </Button>
                     </div>
                 </div>
