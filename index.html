@@ -3,391 +3,590 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wureg Store - Digital Shop</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="https://cdn.lynkid.my.id/profile/10-04-2025/1744247502273_9419383" type="image/x-icon">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest" defer></script>
-
-
-</head>
-<body class="text-gray-300">
-
-    <!-- Navbar -->
-    <nav class="navbare sticky top-0 z-50">
-        <div class="container mx-auto px-4">
-            <div class="NavSet">
-                <!-- Logo -->
-                <div class="flex-shrink-0">
-                    <a href="Index.html" class="text-2xl font-orbitron font-bold tracking-widest bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-500 to-red-500">
-                        WUREG STORE
-                    </a>
-                </div>
-
-                <!-- Search Bar (Desktop) -->
-                <div class="relative hidden sm:block w-full max-w-xs">
-                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <i data-lucide="search" class="w-5 h-5 text-neutral-500"></i>
-                    </div>
-                    <input type="search" id="search-input" placeholder="Cari produk..." class="w-full bg-neutral-900 border border-neutral-800 rounded-lg pl-10 pr-4 py-2 text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 transition-all">
-                </div>
-                
-                <!-- Nav Links & Cart -->
-                <div class="flex items-center space-x-2 md:space-x-4">
-                    <a href="#" id="store-link" class="text-neutral-400 hover:text-fuchsia-400 transition-colors hidden md:block px-3 py-2 rounded-md text-sm font-medium">Store</a>
-                    <a href="#" id="posts-link" class="text-neutral-400 hover:text-fuchsia-400 transition-colors hidden md:block px-3 py-2 rounded-md text-sm font-medium">Postingan</a>
-                    <button class="relative p-2 rounded-full text-neutral-400 hover:text-white hover:bg-neutral-800 transition-colors">
-                        <i data-lucide="shopping-cart" class="w-6 h-6"></i>
-                        <span class="absolute top-1 right-1 block h-2 w-2 rounded-full bg-fuchsia-500 ring-2 ring-black"></span>
-                    </button>
-                </div>
-            </div>
-            <!-- Mobile Search Bar -->
-            <div class="sm:hidden pb-4">
-            <div class="relative w-full">
-                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <i data-lucide="search" class="w-5 h-5 text-neutral-500"></i>
-                    </div>
-                    <input type="search" id="search-input-mobile" placeholder="Cari produk..." class="w-full bg-neutral-900 border border-neutral-800 rounded-lg pl-10 pr-4 py-2 text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 transition-all">
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- === HALAMAN TOKO (STORE PAGE) === -->
-    <div id="store-page" class="container mx-auto px-4 py-8 md:py-12">
-
-        <!-- Header -->
-        <header class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight font-orbitron">
-                <span class="bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-500 via-purple-500 to-violet-500">
-                    WURE<span class="text-fuchsia-400">G</span> STORE
-                </span>
-            </h1>
-            <p class="mt-2 text-lg text-neutral-400">Murah Meriah dan Berkualitas</p>
-        </header>
-
-
-        <!-- Bagian Produk -->
-        <main>
-            <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-4">
-                
-<!-- Produk 1 -->
-                <div class="product-card transition-all duration-300 hover:shadow-fuchsia-500/20 hover:-translate-y-1 hover:border-fuchsia-500/50">
-                    <img src="Image/2024.jpg" alt="Gambar produk digital" class="Adobe-2024" loading="lazy" decoding="async">
-                    <div class="p-5"><h3 class="text-xl font-bold text-white">Adobe Pack 2024</h3>
-                    <p class="text-neutral-400 mt-2 text-sm h-16">Adobe Studio Pack yang berisi: Premiere Pro, After Effect, Audition, PhotoShop dan Illustrator</p>
-                    <div class="flex justify-between items-center mt-4"><span class="text-2xl font-bold text-fuchsia-400">Rp 17.000</span>
-                    <div class="tobrut">
-                        <button onclick="linkwa('Adobe Pack 2024', 'Rp 17.000')" class="w-full bg-green-500 text-white font-bold py-3 rounded-lg hover:bg-green-600 transition-all duration-300 flex items-center justify-center gap-2 payment-method-btn" id="btn-whatsapp"><i data-lucide="message-circle" class="w-5 h-5"></i></button>
-                        <button onclick="openPaymentModal('Adobe Pack 2024 \'5 Software\'', 'Rp 17.000')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40">Beli</button>
-                        <button onclick="window.open('https://lynk.id/hafizwrg/7gwkvr2d2xlr', '_blank')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40"></i>Lynk</button>
-                    </div>
-                    </div></div></div>
-
-                <div class="product-card transition-all duration-300 hover:shadow-fuchsia-500/20 hover:-translate-y-1 hover:border-fuchsia-500/50">
-                    <img src="https://th.bing.com/th/id/OIP.ktFiPPs_6RIXamLuQPnVZgHaHa?w=169&h=180&c=7&r=0&o=7&dpr=1.4&pid=1.7&rm=3" alt="Gambar produk digital" class="Flstudio" loading="lazy" decoding="async">
-                    <div class="p-5"><h3 class="text-xl font-bold text-white">FL Studio Producer Edition</h3>
-                    <p class="text-neutral-400 mt-2 text-sm h-16">Jadilah Komposer Musik Masterpiece hanya dari 1 aplikasi</p>
-                    <div class="flex justify-between items-center mt-4"><span class="text-2xl font-bold text-fuchsia-400">Rp 13.000</span>
-                    <div class="tobrut">
-                        <button onclick="linkwa('FL Studio Producer Edition', 'Rp 13.000')" class="w-full bg-green-500 text-white font-bold py-3 rounded-lg hover:bg-green-600 transition-all duration-300 flex items-center justify-center gap-2 payment-method-btn" id="btn-whatsapp"><i data-lucide="message-circle" class="w-5 h-5"></i></button>
-                        <button onclick="openPaymentModal('FL Studio Producer Edition', 'Rp 13.000')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40">Beli</button>
-                        <button onclick="window.open('http://lynk.id/hafizwrg/x4yeqwlgg6kp/checkout', '_blank')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40"></i>Lynk</button>
-                    </div>
-                    </div></div></div>
-                    
-<!-- Produk 2 -->
-                <div class="product-card transition-all duration-300 hover:shadow-fuchsia-500/20 hover:-translate-y-1 hover:border-fuchsia-500/50">
-                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHFdun1BxCxeIo5gxxUIuB6y78CND0HzeQzrd-3S-i5vYX1tDrpDIwsnQufpR1tHqeXMXQn00D1gS6sdwHNjSz8lt4nsKwDAy7HMas4hirfWE3-vtezajXHdKneMGdusbEh5XJ7MdgZB3cBBz4JksCMM9DlePjEQ-YGJttohw1dOQ3rV-8BtmEDevCS_Q/s320/acm.jpg" alt="Gambar produk digital" class="Adobe-2024" loading="lazy" decoding="async">
-                    <div class="p-5"><h3 class="text-xl font-bold text-white">Assasin Creed: Mirage</h3>
-                    <p class="text-neutral-400 mt-2 text-sm h-16">game adventure yang berpeta baghdad dan pada era the golden age of islam</p>
-                    <div class="flex justify-between items-center mt-4"><span class="text-2xl font-bold text-fuchsia-400">Rp 7.000</span>
-                    <div class="tobrut">
-                        <button onclick="linkwa('Assasin Creed: Mirage', 'Rp 7.000')" class="w-full bg-green-500 text-white font-bold py-3 rounded-lg hover:bg-green-600 transition-all duration-300 flex items-center justify-center gap-2 payment-method-btn" id="btn-whatsapp"><i data-lucide="message-circle" class="w-5 h-5"></i></button>
-                        <button onclick="openPaymentModal('Assasin Creed: Mirage', 'Rp 7.000')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40">Beli</button>
-                        <button onclick="window.open('https://lynk.id/hafizwrg/5m2xw65g70q5', '_blank')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40"></i>Lynk</button>
-                    </div>
-                    </div></div></div>
-<!-- Produk 3 -->
-                <div class="product-card transition-all duration-300 hover:shadow-fuchsia-500/20 hover:-translate-y-1 hover:border-fuchsia-500/50">
-                    <img src="Image/2025.jpg" alt="Gambar produk digital" class="Adobe-2024" loading="lazy" decoding="async">
-                    <div class="p-5"><h3 class="text-xl font-bold text-white">Adobe Pack 2025</h3>
-                    <p class="text-neutral-400 mt-2 text-sm h-16">berisikan 3 software adobe: PhotoShop, After Effect dan Premiere Pro</p>
-                    <div class="flex justify-between items-center mt-4"><span class="text-2xl font-bold text-fuchsia-400">Rp 7.000</span>
-                    <div class="tobrut">
-                        <button onclick="linkwa('ADOBE PACK 2025', 'Rp 12.000')" class="w-full bg-green-500 text-white font-bold py-3 rounded-lg hover:bg-green-600 transition-all duration-300 flex items-center justify-center gap-2 payment-method-btn" id="btn-whatsapp"><i data-lucide="message-circle" class="w-5 h-5"></i></button>
-                        <button onclick="openPaymentModal('ADOBE PACK 2025 \'3 Software\'', 'Rp 12.000')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40">Beli</button>
-                        <button onclick="window.open('https://lynk.id/hafizwrg/x59xm061x9v8', '_blank')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40"></i>Lynk</button>
-                    </div>
-                    </div></div></div>
-<!-- Produk 4 -->
-                <div class="product-card transition-all duration-300 hover:shadow-fuchsia-500/20 hover:-translate-y-1 hover:border-fuchsia-500/50">
-                    <img src="https://cdn.iconscout.com/icon/free/png-256/minecraft-2752120-2284937.png" alt="Gambar produk digital" class="Adobe-2024" loading="lazy" decoding="async">
-                    <div class="p-5"><h3 class="text-xl font-bold text-white">Minecraft PlayStore</h3>
-                    <p class="text-neutral-400 mt-2 text-sm h-16">akun sharing minecraft Playstore</p>
-                    <div class="flex justify-between items-center mt-4"><span class="text-2xl font-bold text-fuchsia-400">Rp 5.000</span>
-                    <div class="tobrut">
-                        <button onclick="linkwa('Minecraft', 'Rp 5.000')" class="w-full bg-green-500 text-white font-bold py-3 rounded-lg hover:bg-green-600 transition-all duration-300 flex items-center justify-center gap-2 payment-method-btn" id="btn-whatsapp"><i data-lucide="message-circle" class="w-5 h-5"></i></button>
-                        <button onclick="openPaymentModal('Minecraft \'PS Login\'', 'Rp 5.000')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40">Beli</button>
-                        <button onclick="window.open('https://lynk.id/hafizwrg/zq5zxddzgyg1', '_blank')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40"></i>Lynk</button>
-                    </div>
-                    </div></div></div>
-<!-- Produk 5 -->
-                <div class="product-card transition-all duration-300 hover:shadow-fuchsia-500/20 hover:-translate-y-1 hover:border-fuchsia-500/50">
-                    <img src="https://down-id.img.susercontent.com/file/id-11134207-7qul5-lk4njjx4zp3sf8" alt="Gambar produk digital" class="idm" loading="lazy" decoding="async">
-                    <div class="p-5"><h3 class="text-xl font-bold text-white">Idm Activation Script</h3>
-                    <p class="text-neutral-400 mt-2 text-sm h-16">Script activator yang berfungsi di latest version IDM</p>
-                    <div class="flex justify-between items-center mt-4"><span class="text-2xl font-bold text-fuchsia-400">Rp 7.000</span>
-                    <div class="tobrut">
-                        <button onclick="linkwa('IDM Activator Script', 'Rp 7.000')" class="w-full bg-green-500 text-white font-bold py-3 rounded-lg hover:bg-green-600 transition-all duration-300 flex items-center justify-center gap-2 payment-method-btn" id="btn-whatsapp"><i data-lucide="message-circle" class="w-5 h-5"></i></button>
-                        <button onclick="openPaymentModal('IDM Activator \' All Ver\'', 'Rp 7.000')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40">Beli</button>
-                        <button onclick="window.open('http://lynk.id/hafizwrg/465qp07vdx12/checkout', '_blank')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40"></i>Lynk</button>
-                    </div></div></div></div>
-<!-- CODMW -->
-                <div class="product-card transition-all duration-300 hover:shadow-fuchsia-500/20 hover:-translate-y-1 hover:border-fuchsia-500/50">
-                    <img src="https://www.pngall.com/wp-content/uploads/9/Call-of-Duty-Modern-Warfare-Logo-PNG-Download-Image.png" alt="Gambar produk digital" class="COD" loading="lazy" decoding="async">
-                    <div class="p-5"><h3 class="text-xl font-bold text-white">Call Of Duty: Modern Warfare 2019</h3>
-                    <p class="text-neutral-400 mt-2 text-sm h-16">File Torrent, Full game repack</p>
-                    <div class="flex justify-between items-center mt-4"><span class="text-2xl font-bold text-fuchsia-400">Rp 8.000</span>
-                    <div class="tobrut">
-                        <button onclick="linkwa('Call Of Duty: Modern Warfare 2019', 'Rp 8.000')" class="w-full bg-green-500 text-white font-bold py-3 rounded-lg hover:bg-green-600 transition-all duration-300 flex items-center justify-center gap-2 payment-method-btn" id="btn-whatsapp"><i data-lucide="message-circle" class="w-5 h-5"></i></button>
-                        <button onclick="openPaymentModal('Call Of Duty: Modern Warfare 2019', 'Rp 8.000')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40">Beli</button>
-                        <button onclick="window.open('https://lynk.id/hafizwrg/y57x2nyoxyw1', '_blank')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40"></i>Lynk</button>
-                    </div></div></div></div>
-<!-- AE 2024 -->
-                <div class="product-card transition-all duration-300 hover:shadow-fuchsia-500/20 hover:-translate-y-1 hover:border-fuchsia-500/50">
-                    <img src="https://tse1.mm.bing.net/th/id/OIP.IvxVv3vyvZ7bRq6khFak-AHaHa?cb=ucfimg2&ucfimg=1&w=980&h=980&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Gambar produk digital" class="Adobe-2024" loading="lazy" decoding="async">
-                    <div class="p-5"><h3 class="text-xl font-bold text-white">Adobe After Effect 2024</h3>
-                    <p class="text-neutral-400 mt-2 text-sm h-16">After Effect 2024 app for your visual effect edit</p>
-                    <div class="flex justify-between items-center mt-4"><span class="text-2xl font-bold text-fuchsia-400">Rp 4.000</span>
-                    <div class="tobrut">
-                        <button onclick="linkwa('AE 2024', 'Rp 4.000')" class="w-full bg-green-500 text-white font-bold py-3 rounded-lg hover:bg-green-600 transition-all duration-300 flex items-center justify-center gap-2 payment-method-btn" id="btn-whatsapp"><i data-lucide="message-circle" class="w-5 h-5"></i></button>
-                        <button onclick="openPaymentModal('AE 2024', 'Rp 4.000')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40">Beli</button>
-                        <button onclick="window.open('https://lynk.id/hafizwrg/1kq78ogkqwwq/checkout', '_blank')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40"></i>Lynk</button>
-                    </div>
-                    </div></div></div>
-<!-- PS 2024 -->
-                <div class="product-card transition-all duration-300 hover:shadow-fuchsia-500/20 hover:-translate-y-1 hover:border-fuchsia-500/50">
-                    <img src="https://cdn.lynkid.my.id/products/04-12-2025/1764829084267_5964647.webp" alt="Gambar produk digital" class="Adobe-2024" loading="lazy" decoding="async">
-                    <div class="p-5"><h3 class="text-xl font-bold text-white">Adobe PhotoShop 2024</h3>
-                    <p class="text-neutral-400 mt-2 text-sm h-16">PhotoShop 2024 app for your graphics design and other</p>
-                    <div class="flex justify-between items-center mt-4"><span class="text-2xl font-bold text-fuchsia-400">Rp 4.000</span>
-                    <div class="tobrut">
-                        <button onclick="linkwa('PS 2024', 'Rp 4.000')" class="w-full bg-green-500 text-white font-bold py-3 rounded-lg hover:bg-green-600 transition-all duration-300 flex items-center justify-center gap-2 payment-method-btn" id="btn-whatsapp"><i data-lucide="message-circle" class="w-5 h-5"></i></button>
-                        <button onclick="openPaymentModal('PS 2024', 'Rp 4.000')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40">Beli</button>
-                        <button onclick="window.open('https://lynk.id/hafizwrg/7eq71krpd9jo/checkout?token=cGFyYW1zPSU1QiU1RCZiaWRfcHJpY2U9MCZxdHlfcHJvZD0x', '_blank')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40"></i>Lynk</button>
-                    </div>
-                    </div></div></div>
-
-<!-- PS 2025 -->
-                <div class="product-card transition-all duration-300 hover:shadow-fuchsia-500/20 hover:-translate-y-1 hover:border-fuchsia-500/50">
-                    <img src="https://cdn.lynkid.my.id/products/04-12-2025/1764829084267_5964647.webp" alt="Gambar produk digital" class="Adobe-2024" loading="lazy" decoding="async">
-                    <div class="p-5"><h3 class="text-xl font-bold text-white">Adobe PhotoShop 2025</h3>
-                    <p class="text-neutral-400 mt-2 text-sm h-16">PhotoShop 2025 app for your graphics design and other</p>
-                    <div class="flex justify-between items-center mt-4"><span class="text-2xl font-bold text-fuchsia-400">Rp 4.000</span>
-                    <div class="tobrut">
-                        <button onclick="linkwa('PS 2025', 'Rp 4.000')" class="w-full bg-green-500 text-white font-bold py-3 rounded-lg hover:bg-green-600 transition-all duration-300 flex items-center justify-center gap-2 payment-method-btn" id="btn-whatsapp"><i data-lucide="message-circle" class="w-5 h-5"></i></button>
-                        <button onclick="openPaymentModal('PS 2025', 'Rp 4.000')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40">Beli</button>
-                        <button onclick="window.open('https://lynk.id/hafizwrg/3wq7k56elw5x/checkout?token=cGFyYW1zPSU1QiU1RCZiaWRfcHJpY2U9MCZxdHlfcHJvZD0x', '_blank')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40"></i>Lynk</button>
-                    </div>
-                    </div></div></div>
-
-<!-- PR 2025 -->
-                <div class="product-card transition-all duration-300 hover:shadow-fuchsia-500/20 hover:-translate-y-1 hover:border-fuchsia-500/50">
-                    <img src="https://cdn.lynkid.my.id/products/04-12-2025/1764830963662_8386931.webp" alt="Gambar produk digital" class="Adobe-2024" loading="lazy" decoding="async">
-                    <div class="p-5"><h3 class="text-xl font-bold text-white">Adobe Premiere Pro 2025</h3>
-                    <p class="text-neutral-400 mt-2 text-sm h-16">Premiere Pro 2025 app for your video like an a studio editor</p>
-                    <div class="flex justify-between items-center mt-4"><span class="text-2xl font-bold text-fuchsia-400">Rp 4.000</span>
-                    <div class="tobrut">
-                        <button onclick="linkwa('PR 2025', 'Rp 4.000')" class="w-full bg-green-500 text-white font-bold py-3 rounded-lg hover:bg-green-600 transition-all duration-300 flex items-center justify-center gap-2 payment-method-btn" id="btn-whatsapp"><i data-lucide="message-circle" class="w-5 h-5"></i></button>
-                        <button onclick="openPaymentModal('PR 2025', 'Rp 4.000')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40">Beli</button>
-                        <button onclick="window.open('https://lynk.id/hafizwrg/59q7pom86yv8/checkout', '_blank')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40"></i>Lynk</button>
-                    </div>
-                    </div></div></div>
-<!-- AU 2024 -->
-                <div class="product-card transition-all duration-300 hover:shadow-fuchsia-500/20 hover:-translate-y-1 hover:border-fuchsia-500/50">
-                    <img src="https://cdn.lynkid.my.id/draft-products/04-12-2025/1764832006688_6723270.webp" alt="Gambar produk digital" class="Adobe-2024" loading="lazy" decoding="async">
-                    <div class="p-5"><h3 class="text-xl font-bold text-white">Adobe Audition 2024</h3>
-                    <p class="text-neutral-400 mt-2 text-sm h-16">After Effect 2024 app for your visual effect edit</p>
-                    <div class="flex justify-between items-center mt-4"><span class="text-2xl font-bold text-fuchsia-400">Rp 4.000</span>
-                    <div class="tobrut">
-                        <button onclick="linkwa('AU 2024', 'Rp 4.000')" class="w-full bg-green-500 text-white font-bold py-3 rounded-lg hover:bg-green-600 transition-all duration-300 flex items-center justify-center gap-2 payment-method-btn" id="btn-whatsapp"><i data-lucide="message-circle" class="w-5 h-5"></i></button>
-                        <button onclick="openPaymentModal('AU 2024', 'Rp 4.000')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40">Beli</button>
-                        <button onclick="window.open('https://lynk.id/hafizwrg/1kq78ogkqwwq/checkout', '_blank')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40"></i>Lynk</button>
-                    </div>
-                    </div></div></div>
-
-<!-- Poppy 4c -->
-                <div class="product-card transition-all duration-300 hover:shadow-fuchsia-500/20 hover:-translate-y-1 hover:border-fuchsia-500/50">
-                    <img src="https://tse4.mm.bing.net/th/id/OIP.19FKaTlpMpuVaHO0h5-FTgHaHa?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Gambar produk digital" class="COD" loading="lazy" decoding="async">
-                    <div class="p-5"><h3 class="text-xl font-bold text-white">Poppy Playtime:  4 Chapter</h3>
-                    <p class="text-neutral-400 mt-2 text-sm h-16">File Torrent, semua chapter bisa di mainkan, bukti di live yt, full Size 25GB</p>
-                    <div class="flex justify-between items-center mt-4"><span class="text-2xl font-bold text-fuchsia-400">Rp 6.000</span>
-                    <div class="tobrut">
-                        <button onclick="linkwa('Poppy Playtime 4C', 'Rp 6.000')" class="w-full bg-green-500 text-white font-bold py-3 rounded-lg hover:bg-green-600 transition-all duration-300 flex items-center justify-center gap-2 payment-method-btn" id="btn-whatsapp"><i data-lucide="message-circle" class="w-5 h-5"></i></button>
-                        <button onclick="openPaymentModal('Poppy Playtime 4C', 'Rp 6.000')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40">Beli</button>
-                        <button onclick="window.open('https://lynk.id/hafizwrg/lq1vokqpjk6x', '_blank')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40"></i>Lynk</button>
-                    </div></div></div></div>
-<!-- filmora 14  -->
-                <div class="product-card transition-all duration-300 hover:shadow-fuchsia-500/20 hover:-translate-y-1 hover:border-fuchsia-500/50">
-                    <img src="https://static1.makeuseofimages.com/wordpress/wp-content/uploads/2023/08/wondershare-filmora.png" alt="Gambar produk digital" class="COD" loading="lazy" decoding="async">
-                    <div class="p-5"><h3 class="text-xl font-bold text-white">Filmora 14</h3>
-                    <p class="text-neutral-400 mt-2 text-sm h-16">filmora 14, full features</p>
-                    <div class="flex justify-between items-center mt-4"><span class="text-2xl font-bold text-fuchsia-400">Rp 6.000</span>
-                    <div class="tobrut">
-                        <button onclick="linkwa('Filmora 14', 'Rp 6.000')" class="w-full bg-green-500 text-white font-bold py-3 rounded-lg hover:bg-green-600 transition-all duration-300 flex items-center justify-center gap-2 payment-method-btn" id="btn-whatsapp"><i data-lucide="message-circle" class="w-5 h-5"></i></button>
-                        <button onclick="openPaymentModal('Filmora 14', 'Rp 6.000')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40">Beli</button>
-                        <button onclick="window.open('http://lynk.id/hafizwrg/kym94n52yxm6', '_blank')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40"></i>Lynk</button>
-                    </div></div></div></div>
-<!-- Codmw2R  -->
-                    <div class="product-card transition-all duration-300 hover:shadow-fuchsia-500/20 hover:-translate-y-1 hover:border-fuchsia-500/50">
-                    <img src="https://image.api.playstation.com/vulcan/img/rnd/202008/1900/lTSvbByTYMqy6R22teoybKCg.png" alt="Gambar produk digital" class="COD" loading="lazy" decoding="async">
-                    <div class="p-5"><h3 class="text-xl font-bold text-white">Call of Duty: Modern Warfare 2 Remastered</h3>
-                    <p class="text-neutral-400 mt-2 text-sm h-16">full game download</p>
-                    <div class="flex justify-between items-center mt-4"><span class="text-2xl font-bold text-fuchsia-400">Rp 6.000</span>
-                    <div class="tobrut">
-                        <button onclick="linkwa('CODMW2R', 'Rp 6.000')" class="w-full bg-green-500 text-white font-bold py-3 rounded-lg hover:bg-green-600 transition-all duration-300 flex items-center justify-center gap-2 payment-method-btn" id="btn-whatsapp"><i data-lucide="message-circle" class="w-5 h-5"></i></button>
-                        <button onclick="openPaymentModal('CODMW2R', 'Rp 6.000')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40">Beli</button>
-                        <button onclick="window.open('https://lynk.id/hafizwrg/rze3nd55227e', '_blank')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40"></i>Lynk</button>
-                    </div></div></div></div>
-
-<!-- Codmw2R  -->
-                    <div class="product-card transition-all duration-300 hover:shadow-fuchsia-500/20 hover:-translate-y-1 hover:border-fuchsia-500/50">
-                    <img src="https://tse3.mm.bing.net/th/id/OIP.OAIse3bcuA67YpcEX1wutAHaIq?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Gambar produk digital" class="COD" loading="lazy" decoding="async">
-                    <div class="p-5"><h3 class="text-xl font-bold text-white">Call of Duty: Modern Warfare Trilogy</h3>
-                    <p class="text-neutral-400 mt-2 text-sm h-16">Se paket dapat 3</p>
-                    <div class="flex justify-between items-center mt-4"><span class="text-2xl font-bold text-fuchsia-400">Rp 12.000</span>
-                    <div class="tobrut">
-                        <button onclick="linkwa('CODMW Trilogy', 'Rp 12.000')" class="w-full bg-green-500 text-white font-bold py-3 rounded-lg hover:bg-green-600 transition-all duration-300 flex items-center justify-center gap-2 payment-method-btn" id="btn-whatsapp"><i data-lucide="message-circle" class="w-5 h-5"></i></button>
-                        <button onclick="openPaymentModal('CODMW Trilogy', 'Rp 12.000')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40">Beli</button>
-                        <button onclick="window.open('https://lynk.id/hafizwrg/lmqe2zr57vrx', '_blank')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40"></i>Lynk</button>
-                    </div></div></div></div>
-<!-- Codmw2R  -->
-                    <div class="product-card transition-all duration-300 hover:shadow-fuchsia-500/20 hover:-translate-y-1 hover:border-fuchsia-500/50">
-                    <img src="https://tse3.mm.bing.net/th/id/OIP.XJAyN0IGDUM5r3Duw4Z1nwHaHa?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Gambar produk digital" class="COD" loading="lazy" decoding="async">
-                    <div class="p-5"><h3 class="text-xl font-bold text-white">Dying light 2 Stay Human</h3>
-                    <p class="text-neutral-400 mt-2 text-sm h-16">Stay Human edition</p>
-                    <div class="flex justify-between items-center mt-4"><span class="text-2xl font-bold text-fuchsia-400">Rp 6.000</span>
-                    <div class="tobrut">
-                        <button onclick="linkwa('Dying light 2 Stay Human', 'Rp 6.000')" class="w-full bg-green-500 text-white font-bold py-3 rounded-lg hover:bg-green-600 transition-all duration-300 flex items-center justify-center gap-2 payment-method-btn" id="btn-whatsapp"><i data-lucide="message-circle" class="w-5 h-5"></i></button>
-                        <button onclick="openPaymentModal('Dying Light 2 Stay Human', 'Rp 6.000')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40">Beli</button>
-                        <button onclick="window.open('https://lynk.id/hafizwrg/ee8y2p0m74k0', '_blank')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40"></i>Lynk</button>
-                    </div></div></div></div>
-
-<!-- Search -->
-            </div>
-            <div id="no-results" class="hidden text-center py-16">
-                <i data-lucide="swords" class="w-16 h-16 mx-auto text-neutral-600 mb-4"></i>
-                <h3 class="text-2xl font-bold text-white font-orbitron">ITEM TIDAK DITEMUKAN</h3>
-                <p class="text-neutral-400 mt-2">Coba gunakan kata kunci lain untuk mencari.</p>
-            </div>
-        </main>
-
-<!-- Footer -->
-        <footer class="text-center mt-16 text-neutral-500"><div class="flex justify-center items-center space-x-6 mb-4">
-<!-- WhatsApp -->
-                <a href="https://wa.me/6281528483575" aria-label="WhatsApp" class="text-neutral-400 hover:text-fuchsia-400 transition-colors"><i data-lucide="message-circle" class="w-6 h-6"></i></a>
-<!-- Instagram -->
-                <a href="https://www.instagram.com/hfz.wrg/" aria-label="Instagram" class="text-neutral-400 hover:text-fuchsia-400 transition-colors"><i data-lucide="instagram" class="w-6 h-6"></i></a>
-<!-- TikTok -->
-                <a href="https://www.tiktok.com/@minn_edzzt" aria-label="TikTok" class="text-neutral-400 hover:text-fuchsia-400 transition-colors"><i data-lucide="video" class="w-6 h-6"></i></a>
-<!-- YouTube -->
-                <a href="https://www.youtube.com/@HAFIZWRG" aria-label="YouTube" class="text-neutral-400 hover:text-fuchsia-400 transition-colors"><i data-lucide="youtube" class="w-6 h-6"></i></a>
-<!-- Twitter -->
-                <a href="https://x.com/EdtzMinn" aria-label="Twitter" class="text-neutral-400 hover:text-fuchsia-400 transition-colors"><i data-lucide="twitter" class="w-6 h-6"></i></a>
-            </div>
-            <p>&copy; 2025 Hafiz Wrg. All Rights Reserved.</p>
-        </footer>
-
-    </div>
-
-    <!-- === HALAMAN POSTINGAN (POSTS PAGE) === -->
-    <div id="posts-page" class="hidden container mx-auto px-4 py-8 md:py-12">
-        <header class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight font-orbitron">
-                <span class="bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-blue-500">
-                    POSTINGAN
-                </span>
-            </h1>
-            <p class="mt-2 text-lg text-neutral-400">Berita terbaru dan update dari Wureg Store.</p>
-        </header>
-        
-        <main>
-            <div id="post-list" class="space-y-8">
-                <!--- Produk 1 -->
-                    <div class="product-card transition-all duration-300 hover:shadow-fuchsia-500/20 hover:-translate-y-1 hover:border-fuchsia-500/50">
-                    <div class="p-5"><h3 class="text-xl font-bold text-white">Kalkulator Pecahan</h3>
-                    <p class="text-neutral-400 mt-2 text-sm h-16">ini adalah salah satu project java yang gw bikin kemudian gw convert ke Js biar bisa jadi website gw minta bantuan Ai untuk visual</p>
-                    <button onclick="window.open('https://hafizwrg.github.io/retool/', '_blank')" class="bg-fuchsia-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-fuchsia-700 transition-all duration-300 hover:shadow-lg hover:shadow-fuchsia-600/40"></i>Buka</button>
-                </div></div></div>
-            </div>
-        </main>
-    </div>
+    <title>Al-Baiquniyah</title>
     
-    <!-- Modal Pembayaran -->
-    <div id="payment-modal" class="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden modal-enter">
-        <div id="modal-content" class="bg-neutral-900 border border-neutral-800 rounded-2xl shadow-2xl p-6 md:p-8 w-full max-w-md relative transition-transform duration-300 gamer-border-glow">
-            <!-- Tombol Close -->
-            <button onclick="closePaymentModal()" class="absolute top-4 right-4 text-neutral-500 hover:text-white transition-colors">
-                <i data-lucide="x" class="w-6 h-6"></i>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #f0fdf4; /* Soft Green tint */
+            color: #334155;
+        }
+        
+        .font-arabic {
+            font-family: 'Amiri', serif;
+            line-height: 2.2;
+        }
+
+        /* Clean Card Style */
+        .card {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border: 1px solid #e2e8f0;
+        }
+        
+        /* Smooth Fade In */
+        .fade-in {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: { 500: '#10b981', 600: '#059669', 100: '#d1fae5', 50: '#ecfdf5' }, // Emerald
+                        secondary: { 500: '#3b82f6', 100: '#dbeafe', 50: '#eff6ff' } // Blue
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen">
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        // --- ICONS ---
+        const Icons = {
+            Book: () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>,
+            Play: () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>,
+            Home: () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>,
+            Clock: () => <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>,
+            Refresh: () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+        };
+
+        // --- DATA: NADZOM FULL (34 VERSES) ---
+        const nadzomFull = [
+            { ar: "أَبْدَأُ بِالْحَمْدِ مُصَلِّياً عَلَى ... مُحَمَّدٍ خَيْرِ نَبِيٍّ أُرْسِلا", id: "Aku memulai dengan memuji (Allah) sambil bershalawat kepada ... Muhammad, sebaik-baik Nabi yang diutus." },
+            { ar: "وَذِي مِنَ أقْسَامِ الحَدِيثِ عِدَّه ... وَكُلُّ وَاحِدٍ أَتَى وَحَدَّه", id: "Dan ini adalah sejumlah pembagian hadis ... dan setiap bagian datang beserta definisinya." },
+            { ar: "أَوَّلُهَا الصَّحِيحُ وَهْوَ مَا اتَّصَلْ ... إِسْنَادُهُ وَلَمْ يَشُذَّ أَوْ يُعَلْ", id: "Yang pertama adalah Shahih, yaitu yang bersambung ... sanadnya dan tidak syadz (janggal) atau ber-illat (cacat)." },
+            { ar: "يَرْوِيهِ عَدْلٌ ضَابِطٌ عَنْ مِثْلِهِ ... مُعْتَمَدٌ فِي ضَبْطِهِ وَنَقْلِهِ", id: "Diriwayatkan oleh perawi adil dan dhabit dari yang semisalnya ... yang diandalkan dalam kedhabitan dan periwayatannya." },
+            { ar: "وَالْحَسَنُ الْمَعْرُوفُ طُرْقاً وَغَدَتْ ... رِجَالُهُ لاَ كَالصَّحِيحِ اشْتَهَرَتْ", id: "Dan Hasan adalah yang dikenal jalan periwayatannya, namun ... para perawinya tidak sepopuler (sekuat) perawi hadis shahih." },
+            { ar: "وَكُلُّ مَا عَنْ رُتْبَةِ الحُسْنِ قَصُرْ ... فَهْوَ الضَّعِيفُ وَهُوَ أقْسَاماً كُثُرْ", id: "Dan setiap yang kurang dari tingkatan Hasan ... maka itu adalah Dhaif, dan ia mempunyai banyak pembagian." },
+            { ar: "وَمَا أُضِيفَ لِلنَّبِي الْمَرْفُوعُ ... وَمَا لِتَابِعٍ هُوَ الْمَقْطُوعُ", id: "Dan apa yang disandarkan kepada Nabi adalah Marfu' ... dan yang disandarkan kepada Tabi'in adalah Maqthu'." },
+            { ar: "وَالْمُسْنَدُ الْمُتَّصِلُ الْمَسْمُوعُ ... إِسْنَادُهُ مِنْ رَاوِيهِ حَتَّى الْمُصْطَفَى", id: "Dan Musnad adalah yang bersambung dan didengar ... sanadnya dari perawinya hingga Al-Musthafa (Nabi)." },
+            { ar: "وَمَا بِسَمْعِ كُلِّ رَاوٍ يَتَّصِلْ ... إِسْنَادُهُ لِلْمُصْطَفَى فَالْمُتَّصِلْ", id: "Dan apa yang dengan pendengaran setiap perawi bersambung ... sanadnya kepada Al-Musthafa, maka itu Muttashil." },
+            { ar: "مُسَلْسَلٌ قُلْ مَا عَلَى وَصْفٍ أَتَى ... مِثْلُ أَمَا وَاللهِ أَنْبَأَنِي الْفَتَى", id: "Musalsal katakanlah: apa yang datang dengan sifat tertentu ... seperti: 'Ingatlah, demi Allah, pemuda itu memberitahuku'." },
+            { ar: "كَذَاكَ قَدْ حَدَّثَنِيهِ قَائِمَا ... أَوْ بَعْدَ أَنْ حَدَّثَنِي تَبَسَّمَا", id: "Begitu juga: 'Dia menceritakannya kepadaku sambil berdiri' ... atau 'setelah menceritakan padaku, dia tersenyum'." },
+            { ar: "عَزِيزٌ مَرْوِيُّ اثْنَيْنِ أَوْ ثَلاَثَهْ ... مَشْهُورٌ مَرْوِيُّ فَوْقَ مَا ثَلاَثَهْ", id: "Aziz adalah yang diriwayatkan oleh dua atau tiga orang ... Masyhur adalah yang diriwayatkan lebih dari tiga orang." },
+            { ar: "مُعَنْعَنٌ كَعَن سَعِيدٍ عَنْ كَرَمْ ... وَمُبْهَمٌ مَا فِيهِ رَاوٍ لَمْ يُسَمْ", id: "Mu'an'an seperti 'Dari Sa'id dari Karam' ... dan Mubham adalah yang di dalamnya ada perawi tak bernama." },
+            { ar: "وَكُلُّ مَا قَلَّتْ رِجَالُهُ عَلاَ ... وَضِدُّهُ ذَاكَ الَّذِي قَدْ نَزَلاَ", id: "Setiap yang sedikit jumlah perawinya, itu 'Ali (Tinggi) ... dan lawannya adalah yang Nazil (Rendah)." },
+            { ar: "وَمَا أَضَفْتَهُ إِلَى الأَصْحَابِ مِنْ ... قَوْلٍ وَفِعْلٍ فَهْوَ مَوْقُوفٌ زُكِنْ", id: "Dan apa yang kau sandarkan kepada Sahabat berupa ... perkataan dan perbuatan, maka itu Mauquf, pahamilah." },
+            { ar: "وَمُرْسَلٌ مِنْهُ الصَّحَابِيُّ سَقَطْ ... وَقُلْ غَرِيبٌ مَا رَوَى رَاوٍ فَقَطْ", id: "Dan Murshal adalah yang gugur Sahabat darinya ... dan katakanlah Gharib untuk yang diriwayatkan satu orang saja." },
+            { ar: "وَكُلُّ مَا لَمْ يَتَّصِلْ بِحَالِ ... إِسْنَادُهُ مُنْقَطِعُ الأَوْصَالِ", id: "Dan setiap yang tidak bersambung sama sekali ... sanadnya, adalah Munqathi' (terputus) sendi-sendinya." },
+            { ar: "وَالْمُعْضَلُ السَّاقِطُ مِنْهُ اثْنَانِ ... وَمَا أَتَى مُدَلَّساً نَوْعَانِ", id: "Dan Mu'dhal adalah yang gugur darinya dua orang (berurut) ... dan yang datang secara Mudallas ada dua jenis." },
+            { ar: "الأَوَّلُ الإِسْقَاطُ لِلشَّيْخِ وَأَنْ ... يَنْقُلَ عَمَّنْ فَوْقَهُ بِعَنْ وَأَنْ", id: "Pertama: Menggugurkan guru dan ... menukil dari yang di atasnya dengan lafaz 'An' dan 'Anna'." },
+            { ar: "وَالثَّانِ لاَ يُسْقِطُهُ لَكِنْ يَصِفْ ... أَوْصَافَهُ بِمَا بِهِ لاَ يَنْعَرِفْ", id: "Kedua: Tidak menggugurkannya, tapi menyifati ... sifat-sifatnya dengan yang tidak dikenal darinya." },
+            { ar: "وَمَا يُخَالِفْ ثِقَةٌ فِيهِ الْمَلأ ... فَالشَّاذُّ وَالْمَقْلُوبُ قِسْمَانِ تَلا", id: "Dan apa yang seorang tsiqah menyelisih orang banyak ... maka itu Syadz. Dan Maqlub ada dua bagian yang mengiringi." },
+            { ar: "إِبْدَالُ رَاوٍ مَا بِرَاوٍ قِسْمُ ... وَقَلْبُ إِسْنَادٍ لِمَتْنٍ قِسْمُ", id: "Mengganti seorang perawi dengan perawi lain adalah satu bagian ... dan membalik sanad untuk suatu matan adalah satu bagian." },
+            { ar: "وَالْفَرْدُ مَا قَيَّدْتَهُ بِثِقَةِ ... أَوْ جَمْعٍ أَوْ قَصْرٍ عَلَى رِوَايَةِ", id: "Dan Fard adalah apa yang kau batasi dengan orang tsiqah ... atau jamaah atau pembatasan pada riwayat tertentu." },
+            { ar: "وَمَا بِعِلَّةٍ غُمُوضٍ أَوْ خَفَا ... مُعَلَّلٌ عِنْدَهُمُ قَدْ عُرِفَا", id: "Dan apa yang memiliki cacat samar atau tersembunyi ... dikenal di sisi mereka sebagai Mu'allal." },
+            { ar: "وَذُو اخْتِلاَفِ سَنَدٍ أَوْ مَتْنِ ... مُضْطَرِبٌ عِنْدَ أُهَيْلِ الْفَنِّ", id: "Dan yang memiliki perbedaan sanad atau matan ... adalah Mudhtharib menurut ahli hadis." },
+            { ar: "وَالْمُدْرَجَاتُ فِي الحَدِيثِ مَا أَتَتْ ... مِنْ بَعْضِ أَلْفَاظِ الرُّوَاةِ اتَّصَلَتْ", id: "Dan Mudrajat dalam hadis adalah yang datang ... dari sebagian lafaz perawi yang bersambung (dengan matan)." },
+            { ar: "وَمَا رَوَى كُلُّ قَرِينٍ عَنْ أَخِهْ ... مُدَبَّجٌ فَاعْرِفْهُ حَقًّا وَانْتَخِهْ", id: "Dan apa yang diriwayatkan setiap kawan dari saudaranya ... adalah Mudabbaj, maka kenalilah dengan benar dan banggalah." },
+            { ar: "مُتَّفِقٌ لَفْظاً وَخَطاً مُتَّفِقْ ... وَضِدُّهُ فِيمَا ذَكَرْنَا الْمُفْتَرِقْ", id: "Muttafiq adalah yang lafaz dan tulisannya sama ... dan lawannya dalam yang kami sebutkan adalah Muftariq." },
+            { ar: "مُؤْتَلِفٌ مُتَّفِقُ الخَطِّ فَقَطْ ... وَضِدُّهُ مُخْتَلِفُ فَاخْشَ الْغَلَطْ", id: "Mu'talif adalah yang sama tulisannya saja ... dan lawannya Mukhtalif, maka takutlah salah." },
+            { ar: "وَالْمُنْكَرُ الْفَرْدُ بِهِ رَاوٍ غَدَا ... تَعْدِيلُهُ لاَ يَحْمِلُ التَّفَرُّدَا", id: "Dan Munkar adalah yang seorang perawi bersendiri dengannya ... yang keadilannya tidak bisa menanggung kesendirian itu." },
+            { ar: "مَتْرُوكُهُ مَا وَاحِدٌ بِهِ انْفَرَدْ ... وَأَجْمَعُوا لِضَعْفِهِ فَهُوَ كَرَدْ", id: "Matruk adalah yang satu orang bersendiri dengannya ... dan mereka sepakat atas kelemahannya, maka ia tertolak." },
+            { ar: "وَالْكَذِبُ الْمُخْتَلَقُ المَصْنُوعُ ... عَلَى النَّبِيِّ فَذَلِكَ الْمَوْضُوعُ", id: "Dan dusta yang direkayasa dan dibuat-buat ... atas nama Nabi, maka itulah Maudhu'." },
+            { ar: "وَقَدْ أَتَتْ كَالْجَوْهَرِ المَكْنُونِ ... سَمَّيْتُهَا مَنْظُومَةَ الْبَيْقُونِي", id: "Dan ia telah datang bagaikan mutiara yang tersimpan ... aku namakan ia Manzhumah Baiquni." },
+            { ar: "فَوْقَ الثَّلاَثِينَ بِأَرْبَعٍ أَتَتْ ... أقْسَامُهَا تَمَّتْ بِخَيْرٍ خُتِمَتْ", id: "Ia datang lebih empat di atas tiga puluh (34 bait) ... pembagiannya telah sempurna, ditutup dengan kebaikan." }
+        ];
+
+        // --- DATA: COMPLETE 65 QUESTIONS ---
+        const questionsData = [
+            // 1. Mukadimah
+            { type: "nadzom", question: "أكمل البيت: أَبْدَأُ بِالْحَمْدِ مُصَلِّياً عَلَى ...", options: ["مُحَمَّدٍ خَيْرِ نَبِيٍّ أُرْسِلا", "وَآلِهِ وَصَحْبِهِ وَمَنْ تَلَا", "نَبِيِّنَا الْمُصْطَفَى خَيْرِ الْوَرَى"], answer: "مُحَمَّدٍ خَيْرِ نَبِيٍّ أُرْسِلا" },
+            { type: "nadzom", question: "أكمل البيت: وَذِي مِنَ أقْسَامِ الحَدِيثِ عِدَّه ...", options: ["وَكُلُّ وَاحِدٍ أَتَى وَحَدَّه", "وَنَظْمُهَا جَاءَكَ فِي عُجَالَة", "خُذْهَا هَدِيَّةً مِنَ الرِّسَالَة"], answer: "وَكُلُّ وَاحِدٍ أَتَى وَحَدَّه" },
+
+            // 2. Sahih
+            { type: "tarif", question: "الحديث الصحيح هو:", options: ["ما اتصل سنده ولم يشذ أو يعل", "ما رواه عدد كثير عن عدد كثير", "ما سقط من إسناده راو واحد"], answer: "ما اتصل سنده ولم يشذ أو يعل" },
+            { type: "nadzom", question: "ما هي صفات راوي الحديث الصحيح في النظم؟", options: ["عَدْلٌ ضَابِطٌ", "مَسْتُورُ الْحَالِ", "مَشْهُورٌ بِالْكَرَمِ"], answer: "عَدْلٌ ضَابِطٌ" },
+            { type: "nadzom", question: "أكمل: يَرْوِيهِ عَدْلٌ ضَابِطٌ عَنْ مِثْلِهِ ...", options: ["مُعْتَمَدٌ فِي ضَبْطِهِ وَنَقْلِهِ", "وَلَيْسَ فِيهِ عِلَّةٌ فِي نَقْلِهِ", "مُشْتَهَرٌ بِالصِّدْقِ فِي مَقَالِهِ"], answer: "مُعْتَمَدٌ فِي ضَبْطِهِ وَنَقْلِهِ" },
+
+            // 3. Hasan
+            { type: "tarif", question: "الحديث الحسن هو:", options: ["المعروف طرقاً ورجاله لا كالصحيح اشتهرت", "ما اتصل سنده بنقل العدل الضابط", "ما فقد شرطاً من شروط الصحة"], answer: "المعروف طرقاً ورجاله لا كالصحيح اشتهرت" },
+            { type: "nadzom", question: "أكمل: وَالْحَسَنُ الْمَعْرُوفُ طُرْقاً وَغَدَتْ ...", options: ["رِجَالُهُ لاَ كَالصَّحِيحِ اشْتَهَرَتْ", "صِفَاتُهُ لاَ كَالصَّحِيحِ اشْتَهَرَتْ", "أَسَانِيدُهُ لِلْمُصْطَفَى اتَّصَلَتْ"], answer: "رِجَالُهُ لاَ كَالصَّحِيحِ اشْتَهَرَتْ" },
+
+            // 4. Dhaif
+            { type: "nadzom", question: "أكمل البيت: وَكُلُّ مَا عَنْ رُتْبَةِ الحُسْنِ قَصُرْ ...", options: ["فَهْوَ الضَّعِيفُ وَهُوَ أقْسَاماً كُثُرْ", "فَذَاكَ مَتْرُوكٌ وَلَا يُحْتَجُّ بِهْ", "فَإِنَّهُ الْمَوْضُوعُ كَذِباً يُذْكَرُ"], answer: "فَهْوَ الضَّعِيفُ وَهُوَ أقْسَاماً كُثُرْ" },
+            { type: "tarif", question: "لماذا قال الناظم (أقساماً كثر) في الضعيف؟", options: ["لأن أسباب الضعف كثيرة ومتنوعة", "لأن الضعيف هو أكثر الأحاديث وجوداً", "للقافية فقط"], answer: "لأن أسباب الضعف كثيرة ومتنوعة" },
+
+            // 5. Marfu & Maqthu
+            { type: "tarif", question: "الحديث المرفوع هو ما أضيف إلى:", options: ["النبي ﷺ", "الصحابي", "التابعي"], answer: "النبي ﷺ" },
+            { type: "tarif", question: "الحديث المقطوع هو ما أضيف إلى:", options: ["التابعي", "النبي ﷺ", "الصحابي"], answer: "التابعي" },
+            { type: "nadzom", question: "أكمل البيت: وَمَا أُضِيفَ لِلنَّبِي الْمَرْفُوعُ ...", options: ["وَمَا لِتَابِعٍ هُوَ الْمَقْطُوعُ", "وَمَا لِصَاحِبٍ هُوَ الْمَوْقُوفُ", "وَكُلُّ مَا لَمْ يَتَّصِلْ مَقْطُوعُ"], answer: "وَمَا لِتَابِعٍ هُوَ الْمَقْطُوعُ" },
+
+            // 6. Musnad
+            { type: "tarif", question: "الحديث المسند هو:", options: ["المتصل الإسناد من راويه حتى المصطفى", "ما رواه الجماعة عن الجماعة", "ما سقط منه الصحابي"], answer: "المتصل الإسناد من راويه حتى المصطفى" },
+            { type: "nadzom", question: "أكمل: وَالْمُسْنَدُ الْمُتَّصِلُ الْمَسْمُوعُ ...", options: ["إِسْنَادُهُ مِنْ رَاوِيهِ حَتَّى الْمُصْطَفَى", "مِنْ رَاوِهِ إِلىَ النَّبِي الْمَرْفُوعُ", "وَلَيْسَ فِيهِ قَطْعٌ أَوْ خُضُوعُ"], answer: "إِسْنَادُهُ مِنْ رَاوِيهِ حَتَّى الْمُصْطَفَى" },
+
+            // 7. Muttashil
+            { type: "nadzom", question: "أكمل البيت: وَمَا بِسَمْعِ كُلِّ رَاوٍ يَتَّصِلْ ...", options: ["إِسْنَادُهُ لِلْمُصْطَفَى فَالْمُتَّصِلْ", "فَذَاكَ مَقْطُوعٌ بِهِ قَدْ انْضَبَطْ", "إِسْنَادُهُ مُنْقَطِعُ الأَوْصَالِ"], answer: "إِسْنَادُهُ لِلْمُصْطَفَى فَالْمُتَّصِلْ" },
+            { type: "tarif", question: "الحديث المتصل هو:", options: ["ما اتصل سنده بسماع كل راو عمن فوقه", "ما اتصل سنده بغير سماع", "ما رواه أهل المدينة"], answer: "ما اتصل سنده بسماع كل راو عمن فوقه" },
+
+            // 8. Musalsal
+            { type: "tarif", question: "الحديث المسلسل هو ما تتابع فيه الرواة على:", options: ["وصف معين أو حالة معينة", "اسم معين", "بلد معين"], answer: "وصف معين أو حالة معينة" },
+            { type: "nadzom", question: "ما المثال الذي ذكره الناظم للمسلسل القولي؟", options: ["أَمَا وَاللهِ أَنْبَأَنِي الْفَتَى", "حَدَّثَنِيهِ قَائِمًا", "حَدَّثَنِي تَبَسَّمَا"], answer: "أَمَا وَاللهِ أَنْبَأَنِي الْفَتَى" },
+            { type: "nadzom", question: "أكمل: كَذَاكَ قَدْ حَدَّثَنِيهِ قَائِمَا ...", options: ["أَوْ بَعْدَ أَنْ حَدَّثَنِي تَبَسَّمَا", "أَوْ بَعْدَ أَنْ صَافَحَنِي وَسَلَّمَا", "وَقَالَ لِي يَا صَاحِبي قَدْ فَهِمَا"], answer: "أَوْ بَعْدَ أَنْ حَدَّثَنِي تَبَسَّمَا" },
+
+            // 9. Aziz & Masyhur
+            { type: "tarif", question: "الحديث العزيز هو ما رواه:", options: ["اثنان أو ثلاثة", "واحد فقط", "أكثر من ثلاثة"], answer: "اثنان أو ثلاثة" },
+            { type: "tarif", question: "الحديث المشهور هو ما رواه:", options: ["فوق ما ثلاثة", "ثلاثة فقط", "واحد أو اثنان"], answer: "فوق ما ثلاثة" },
+
+            // 10. Mu'an'an & Mubham
+            { type: "nadzom", question: "أكمل البيت: مُعَنْعَنٌ كَعَن سَعِيدٍ عَنْ كَرَمْ ...", options: ["وَمُبْهَمٌ مَا فِيهِ رَاوٍ لَمْ يُسَمْ", "وَمُرْسَلٌ مِنْهُ الصَّحَابِيُّ سَقَطْ", "وَمَا أَتَى مُدَلَّساً نَوْعَانِ"], answer: "وَمُبْهَمٌ مَا فِيهِ رَاوٍ لَمْ يُسَمْ" },
+            { type: "tarif", question: "المبهم في الحديث هو:", options: ["ما فيه راو لم يصرح باسمه", "ما خفي معناه", "ما فيه انقطاع خفي"], answer: "ما فيه راو لم يصرح باسمه" },
+
+            // 11. Ali & Nazil
+            { type: "tarif", question: "الحديث العالي (علا):", options: ["كل ما قلت رجاله (قرب من النبي)", "كل ما كثرت رجاله", "ما كان سنده صحيحاً"], answer: "كل ما قلت رجاله (قرب من النبي)" },
+            { type: "nadzom", question: "أكمل البيت: وَكُلُّ مَا قَلَّتْ رِجَالُهُ عَلاَ ...", options: ["وَضِدُّهُ ذَاكَ الَّذِي قَدْ نَزَلاَ", "وَهْوَ الَّذِي قَدْ حَازَ وَصْفًا أَمْثَلاَ", "وَكُلُّ مَا زَادَ فَذَاكَ أَنْزَلاَ"], answer: "وَضِدُّهُ ذَاكَ الَّذِي قَدْ نَزَلاَ" },
+
+            // 12. Mauquf
+            { type: "tarif", question: "الحديث الموقوف هو ما أضيف إلى:", options: ["الصحابي", "النبي ﷺ", "التابعي"], answer: "الصحابي" },
+            { type: "nadzom", question: "أكمل: وَمَا أَضَفْتَهُ إِلَى الأَصْحَابِ مِنْ ...", options: ["قَوْلٍ وَفِعْلٍ فَهْوَ مَوْقُوفٌ زُكِنْ", "قَوْلٍ وَفِعْلٍ فَهْوَ مَقْطُوعٌ زُكِنْ", "قَوْلٍ وَفِعْلٍ فَهْوَ مَرْفُوعٌ زُكِنْ"], answer: "قَوْلٍ وَفِعْلٍ فَهْوَ مَوْقُوفٌ زُكِنْ" },
+
+            // 13. Mursal
+            { type: "nadzom", question: "أكمل البيت: وَمُرْسَلٌ مِنْهُ الصَّحَابِيُّ سَقَطْ ...", options: ["وَقُلْ غَرِيبٌ مَا رَوَى رَاوٍ فَقَطْ", "وَقُلْ ضَعِيفٌ مَا رَوَى رَاوٍ فَقَطْ", "وَذَاكَ مَقْطُوعٌ بِهِ قَدْ انْضَبَطْ"], answer: "وَقُلْ غَرِيبٌ مَا رَوَى رَاوٍ فَقَطْ" },
+            { type: "tarif", question: "الحديث المرسل هو:", options: ["ما رفعه التابعي إلى النبي (سقط منه الصحابي)", "ما سقط منه التابعي", "ما سقط من إسناده راويان"], answer: "ما رفعه التابعي إلى النبي (سقط منه الصحابي)" },
+
+            // 14. Gharib
+            { type: "tarif", question: "الحديث الغريب هو:", options: ["ما تفرد بروايته شخص واحد", "ما كان متنه غريباً", "ما رواه الغرباء"], answer: "ما تفرد بروايته شخص واحد" },
+
+            // 15. Munqathi'
+            { type: "tarif", question: "الحديث المنقطع هو:", options: ["كل ما لم يتصل إسناده (بأي وجه كان)", "ما سقط منه الصحابي فقط", "ما سقط منه راويان على التوالي"], answer: "كل ما لم يتصل إسناده (بأي وجه كان)" },
+            { type: "nadzom", question: "أكمل: وَكُلُّ مَا لَمْ يَتَّصِلْ بِحَالِ ...", options: ["إِسْنَادُهُ مُنْقَطِعُ الأَوْصَالِ", "فَذَاكَ مَقْطُوعٌ بِهِ قَدْ خَالِ", "إِسْنَادُهُ مُعْضَلُ الأَوْصَالِ"], answer: "إِسْنَادُهُ مُنْقَطِعُ الأَوْصَالِ" },
+
+            // 16. Mu'dhal
+            { type: "nadzom", question: "أكمل البيت: وَالْمُعْضَلُ السَّاقِطُ مِنْهُ ...", options: ["اثْنَانِ (على التوالي)", "وَاحِدٌ", "ثَلاَثَةٌ"], answer: "اثْنَانِ (على التوالي)" },
+
+            // 17. Mudallas
+            { type: "tarif", question: "تدليس الإسناد (النوع الأول) هو:", options: ["إسقاط الشيخ والنقل عمن فوقه بلفظ يوهم السماع", "تغيير اسم الشيخ", "الكذب في المتن"], answer: "إسقاط الشيخ والنقل عمن فوقه بلفظ يوهم السماع" },
+            { type: "nadzom", question: "أكمل: وَالثَّانِ لاَ يُسْقِطُهُ لَكِنْ يَصِفْ ...", options: ["أَوْصَافَهُ بِمَا بِهِ لاَ يَنْعَرِفْ", "أَحْوَالَهُ بِمَا بِهِ قَدْ يَتَّصِفْ", "أَسْمَاءَهُ بِحَيْثُ لاَ يَنْكَشِفْ"], answer: "أَوْصَافَهُ بِمَا بِهِ لاَ يَنْعَرِفْ" },
+
+            // 18. Shadz
+            { type: "tarif", question: "الحديث الشاذ هو:", options: ["ما خالف فيه المقبول (الثقة) من هو أولى منه", "ما تفرد به الكذاب", "ما كثرت طرقه"], answer: "ما خالف فيه المقبول (الثقة) من هو أولى منه" },
+            { type: "nadzom", question: "أكمل: وَمَا يُخَالِفْ ثِقَةٌ فِيهِ الْمَلأ ...", options: ["فالشَّاذُّ وَالْمَقْلُوبُ قِسْمَانِ تَلا", "فَالشَّاذُّ وَالْمَتْرُوكُ قِسْمَانِ تَلا", "فَالشَّاذُّ وَالْمُنْكَرُ قِسْمَانِ تَلا"], answer: "فالشَّاذُّ وَالْمَقْلُوبُ قِسْمَانِ تَلا" },
+
+            // 19. Maqlub
+            { type: "tarif", question: "المقلوب قسمان، أحدهما إبدال راو براو، والآخر؟", options: ["قلب إسناد لمتن", "قلب الحروف", "قلب المعنى"], answer: "قلب إسناد لمتن" },
+            { type: "nadzom", question: "أكمل: إِبْدَالُ رَاوٍ مَا بِرَاوٍ قِسْمُ ...", options: ["وَقَلْبُ إِسْنَادٍ لِمَتْنٍ قِسْمُ", "وَقَلْبُ مَتْنٍ لِسَنَدٍ قِسْمُ", "وَذَاكَ فِي الْحَدِيثِ أَيْضًا عِلْمُ"], answer: "وَقَلْبُ إِسْنَادٍ لِمَتْنٍ قِسْمُ" },
+
+            // 20. Fard
+            { type: "tarif", question: "الحديث الفرد هو:", options: ["ما قيدته بثقة أو جمع أو قصر على رواية", "ما رواه واحد فقط مطلقاً", "ما ليس له إلا طريق واحد ضعيف"], answer: "ما قيدته بثقة أو جمع أو قصر على رواية" },
+            { type: "nadzom", question: "أكمل: وَالْفَرْدُ مَا قَيَّدْتَهُ بِثِقَةِ ...", options: ["أَوْ جَمْعٍ أَوْ قَصْرٍ عَلَى رِوَايَةِ", "أَوْ جَمْعٍ أَوْ قَصْرٍ عَلَى دِرَايَةِ", "أَوْ جَمْعٍ أَوْ حِفْظٍ عَلَى رِوَايَةِ"], answer: "أَوْ جَمْعٍ أَوْ قَصْرٍ عَلَى رِوَايَةِ" },
+
+            // 21. Mu'allal
+            { type: "tarif", question: "الحديث المعلل هو:", options: ["ما فيه علة غامضة خفية تقدح في صحته", "ما فيه علة ظاهرة", "ما انقطع إسناده"], answer: "ما فيه علة غامضة خفية تقدح في صحته" },
+            { type: "nadzom", question: "أكمل: وَمَا بِعِلَّةٍ غُمُوضٍ أَوْ خَفَا ...", options: ["مُعَلَّلٌ عِنْدَهُمُ قَدْ عُرِفَا", "مُدَلَّسٌ عِنْدَهُمُ قَدْ عُرِفَا", "مُضْطَرِبٌ عِنْدَهُمُ قَدْ عُرِفَا"], answer: "مُعَلَّلٌ عِنْدَهُمُ قَدْ عُرِفَا" },
+
+            // 22. Mudhtharib
+            { type: "nadzom", question: "أكمل: وَذُو اخْتِلاَفِ سَنَدٍ أَوْ مَتْنِ ...", options: ["مُضْطَرِبٌ عِنْدَ أُهَيْلِ الْفَنِّ", "مُخْتَلِفٌ عِنْدَ أُهَيْلِ الْفَنِّ", "فَذَاكَ شَاذٌ بَائِنٌ فَاسْتَغْنِ"], answer: "مُضْطَرِبٌ عِنْدَ أُهَيْلِ الْفَنِّ" },
+
+            // 23. Mudraj
+            { type: "tarif", question: "الحديث المدرج هو:", options: ["ما أدخل في الحديث من كلام الرواة موصولاً", "ما أدرج في باب ليس منه", "ما رواه الأقران"], answer: "ما أدخل في الحديث من كلام الرواة موصولاً" },
+            { type: "nadzom", question: "أكمل: وَالْمُدْرَجَاتُ فِي الحَدِيثِ مَا أَتَتْ ...", options: ["مِنْ بَعْضِ أَلْفَاظِ الرُّوَاةِ اتَّصَلَتْ", "مِنْ قَوْلِ بَعْضِ التَّابِعِينَ نُقِلَتْ", "فِي آخِرِ الْمَتْنِ وَقَدْ تَفَصَّلَتْ"], answer: "مِنْ بَعْضِ أَلْفَاظِ الرُّوَاةِ اتَّصَلَتْ" },
+
+            // 24. Mudabbaj
+            { type: "tarif", question: "الحديث المدبج هو:", options: ["ما روى كل قرين عن أخيه (أقران)", "ما رواه الشيخ عن تلميذه", "ما رواه التلميذ عن شيخه"], answer: "ما روى كل قرين عن أخيه (أقران)" },
+            { type: "nadzom", question: "أكمل: وَمَا رَوَى كُلُّ قَرِينٍ عَنْ أَخِهْ ...", options: ["مُدَبَّجٌ فَاعْرِفْهُ حَقًّا وَانْتَخِهْ", "مُسَلْسَلٌ فَاعْرِفْهُ حَقًّا وَانْتَخِهْ", "مُوَافِقٌ فَاعْرِفْهُ حَقًّا وَانْتَخِهْ"], answer: "مُدَبَّجٌ فَاعْرِفْهُ حَقًّا وَانْتَخِهْ" },
+
+            // 25. Muttafiq & Muftariq
+            { type: "tarif", question: "المتفق والمفترق هو:", options: ["ما اتفق لفظاً وخطاً، وافترق مسمى (شخصاً)", "ما اتفق خطاً واختلف لفظاً", "ما اختلف لفظاً وخطاً"], answer: "ما اتفق لفظاً وخطاً، وافترق مسمى (شخصاً)" },
+            { type: "nadzom", question: "أكمل: مُتَّفِقٌ لَفْظاً وَخَطاً مُتَّفِقْ ...", options: ["وَضِدُّهُ فِيمَا ذَكَرْنَا الْمُفْتَرِقْ", "وَضِدُّهُ فِيمَا ذَكَرْنَا الْمُخْتَلِفْ", "وَعَكْسُهُ فِيمَا ذَكَرْنَا الْمُفْتَرِقْ"], answer: "وَضِدُّهُ فِيمَا ذَكَرْنَا الْمُفْتَرِقْ" },
+
+            // 26. Mu'talif & Mukhtalif
+            { type: "tarif", question: "المؤتلف والمختلف هو:", options: ["ما اتفق خطاً (صورة) واختلف لفظاً (نطقاً)", "ما اتفق لفظاً فقط", "ما اتفق لفظاً وخطاً"], answer: "ما اتفق خطاً (صورة) واختلف لفظاً (نطقاً)" },
+            { type: "nadzom", question: "أكمل: مُؤْتَلِفٌ مُتَّفِقُ الخَطِّ فَقَطْ ...", options: ["وَضِدُّهُ مُخْتَلِفُ فَاخْشَ الْغَلَطْ", "وَضِدُّهُ مُفْتَرِقُ فَاخْشَ الْغَلَطْ", "وَعَكْسُهُ مُخْتَلِفُ فَاخْشَ الشَّطَطْ"], answer: "وَضِدُّهُ مُخْتَلِفُ فَاخْشَ الْغَلَطْ" },
+
+            // 27. Munkar
+            { type: "tarif", question: "الحديث المنكر (بحسب الناظم) هو:", options: ["الفرد الذي لا يحتمل حال راويه التفرد", "ما خالف فيه الثقة من هو أوثق منه", "ما اتفق العلماء على ضعفه"], answer: "الفرد الذي لا يحتمل حال راويه التفرد" },
+            { type: "nadzom", question: "أكمل: وَالْمُنْكَرُ الْفَرْدُ بِهِ رَاوٍ غَدَا ...", options: ["تَعْدِيلُهُ لاَ يَحْمِلُ التَّفَرُّدَا", "وَلَيْسَ فِي مَتْنِ الْحَدِيثِ شَاهِدَا", "وَضَعْفُهُ قَدْ كَانَ فِيهِ زَائِدَا"], answer: "تَعْدِيلُهُ لاَ يَحْمِلُ التَّفَرُّدَا" },
+
+            // 28. Matruk
+            { type: "tarif", question: "الحديث المتروك هو:", options: ["ما انفرد به واحد وأجمعوا على ضعفه", "ما كذب راويه متعمداً", "ما كان فيه راو مجهول"], answer: "ما انفرد به واحد وأجمعوا على ضعفه" },
+            { type: "nadzom", question: "أكمل: مَتْرُوكُهُ مَا وَاحِدٌ بِهِ انْفَرَدْ ...", options: ["وَأَجْمَعُوا لِضَعْفِهِ فَهُوَ كَرَدْ", "وَلَمْ يَكُنْ عِنْدَهُمُ بِمُعْتَمَدْ", "وَكَانَ فِي رِوَايَةٍ لاَ يُعْتَضَدْ"], answer: "وَأَجْمَعُوا لِضَعْفِهِ فَهُوَ كَرَدْ" },
+
+            // 29. Maudhu'
+            { type: "tarif", question: "الحديث الموضوع هو:", options: ["الكذب المختلق المصنوع على النبي ﷺ", "الحديث الضعيف جداً", "خطأ الراوي الثقة"], answer: "الكذب المختلق المصنوع على النبي ﷺ" },
+            { type: "nadzom", question: "أكمل: وَالْكَذِبُ الْمُخْتَلَقُ المَصْنُوعُ ...", options: ["عَلَى النَّبِيِّ فَذَلِكَ الْمَوْضُوعُ", "عَلَى الرَّسُولِ فَهُوَ الْمَرْفُوعُ", "هُوَ الَّذِي يُقَالُ لَهُ الْمَصْنُوعُ"], answer: "عَلَى النَّبِيِّ فَذَلِكَ الْمَوْضُوعُ" },
+
+            // 30. Khatimah
+            { type: "nadzom", question: "بماذا وصف الناظم منظومته؟", options: ["كَالْجَوْهَرِ المَكْنُونِ", "كَاللُّؤْلُؤِ الْمَنْثُورِ", "كَالذَّهَبِ الْمَوْزُونِ"], answer: "كَالْجَوْهَرِ المَكْنُونِ" },
+            { type: "nadzom", question: "كم عدد أبيات المنظومة كما ذكر الناظم؟", options: ["فوق الثلاثين بأربع (34)", "أربعون بيتاً (40)", "خمسون بيتاً (50)"], answer: "فوق الثلاثين بأربع (34)" },
+            { type: "nadzom", question: "أكمل البيت: أَقْسَامُهَا تَمَّتْ بِخَيْرٍ ...", options: ["خُتِمَتْ", "عُلِمَتْ", "فُهِمَتْ"], answer: "خُتِمَتْ" }
+        ];
+
+        // --- COMPONENTS ---
+
+        const Button = ({ children, onClick, variant = "primary", className = "", disabled = false, fullWidth = false }) => {
+            let base = "px-4 py-3 rounded-xl font-bold transition-transform active:scale-95 flex items-center justify-center gap-2 ";
+            if (fullWidth) base += "w-full ";
+            
+            if (variant === "primary") base += "bg-primary-500 text-white shadow-md hover:bg-primary-600 ";
+            if (variant === "secondary") base += "bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 ";
+            if (variant === "outline") base += "border-2 border-primary-500 text-primary-600 hover:bg-primary-50 ";
+            if (variant === "ghost") base += "text-slate-500 hover:bg-slate-100 hover:text-slate-700 ";
+            
+            return (
+                <button onClick={onClick} disabled={disabled} className={`${base} ${className} disabled:opacity-50`}>
+                    {children}
+                </button>
+            );
+        };
+
+        const Timer = ({ duration, onTimeUp, isActive }) => {
+            const [timeLeft, setTimeLeft] = React.useState(duration);
+
+            React.useEffect(() => {
+                if (!isActive) return;
+                setTimeLeft(duration);
+                
+                const interval = setInterval(() => {
+                    setTimeLeft((prev) => {
+                        if (prev <= 1) {
+                            clearInterval(interval);
+                            onTimeUp();
+                            return 0;
+                        }
+                        return prev - 1;
+                    });
+                }, 1000);
+
+                return () => clearInterval(interval);
+            }, [isActive, duration]); 
+
+            const color = timeLeft < 5 ? 'text-red-500' : 'text-primary-600';
+
+            return (
+                <div className="flex items-center gap-2 font-bold bg-white px-4 py-2 rounded-full shadow-sm border border-slate-100">
+                    <Icons.Clock />
+                    <span className={color}>{timeLeft}s</span>
+                </div>
+            );
+        };
+
+        const PillOption = ({ label, selected, onClick }) => (
+            <button 
+                onClick={onClick}
+                className={`flex-1 py-2 px-3 rounded-lg text-sm font-semibold transition-all ${selected ? 'bg-primary-500 text-white shadow-md' : 'bg-slate-100 text-slate-500 hover:bg-slate-200'}`}
+            >
+                {label}
             </button>
+        );
+
+        // --- VIEWS ---
+
+        const HomeView = ({ onStart, onHifz }) => {
+            const [count, setCount] = React.useState(10);
+            const [type, setType] = React.useState('all');
+
+            return (
+                <div className="min-h-screen flex items-center justify-center p-6 fade-in">
+                    <div className="w-full max-w-md bg-white rounded-3xl shadow-xl p-8 text-center border-t-8 border-primary-500">
+                        <div className="mb-6 flex justify-center">
+                            <div className="bg-primary-100 p-4 rounded-full text-primary-600">
+                                <Icons.Book />
+                            </div>
+                        </div>
+                        <h1 className="text-3xl font-bold text-slate-800 mb-2">Baiquniyah</h1>
+                        <p className="text-slate-500 mb-8">Ikhtibar Mustholah Hadist</p>
+                        
+                        {/* Settings */}
+                        <div className="space-y-6 mb-8 text-left">
+                            <div>
+                                <label className="block text-xs font-bold text-slate-400 uppercase mb-3 tracking-wider">Jumlah Soal</label>
+                                <div className="flex gap-2">
+                                    {[5, 10, 20].map(n => (
+                                        <PillOption key={n} label={n} selected={count === n} onClick={() => setCount(n)} />
+                                    ))}
+                                    <PillOption label="Semua" selected={count === 65} onClick={() => setCount(65)} />
+                                </div>
+                            </div>
+
+                            <div>
+                                <label className="block text-xs font-bold text-slate-400 uppercase mb-3 tracking-wider">Kategori</label>
+                                <div className="flex gap-2">
+                                    <PillOption label="Semua" selected={type === 'all'} onClick={() => setType('all')} />
+                                    <PillOption label="Nadzom" selected={type === 'nadzom'} onClick={() => setType('nadzom')} />
+                                    <PillOption label="Ta'rif" selected={type === 'tarif'} onClick={() => setType('tarif')} />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="space-y-3">
+                            <Button onClick={() => onStart({count, type})} className="w-full text-lg shadow-lg shadow-primary-500/30">
+                                Mulai Kuis
+                            </Button>
+                            <Button variant="ghost" onClick={onHifz} className="w-full">
+                                Baca Nadzom (Hifz)
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const HifzView = ({ onBack }) => (
+            <div className="min-h-screen bg-slate-50 p-4 md:p-8 fade-in">
+                <div className="max-w-3xl mx-auto">
+                    <div className="flex items-center justify-between mb-6 sticky top-0 bg-slate-50/95 py-4 z-10 border-b border-slate-200 shadow-sm backdrop-blur-sm">
+                        <button onClick={onBack} className="flex items-center gap-2 text-slate-600 hover:text-primary-600 font-bold px-3 py-1 rounded-lg hover:bg-slate-100 transition-colors">
+                            <Icons.Home /> Kembali
+                        </button>
+                        <h2 className="text-xl font-bold text-slate-800">Matn Al-Baiquniyah</h2>
+                    </div>
+
+                    <div className="space-y-4 pb-12">
+                        {nadzomFull.map((verse, i) => (
+                            <div key={i} className="card p-6 hover:shadow-md transition-shadow">
+                                <div className="flex justify-between items-start gap-4">
+                                    <span className="bg-primary-100 text-primary-600 text-xs font-bold px-2 py-1 rounded-md h-fit">
+                                        {i + 1}
+                                    </span>
+                                    <div className="w-full">
+                                        <p className="font-arabic text-2xl text-right text-slate-800 mb-3 leading-loose" dir="rtl">
+                                            {verse.ar}
+                                        </p>
+                                        <div className="h-px w-full bg-slate-100 mb-3"></div>
+                                        <p className="text-slate-500 text-sm italic text-right">
+                                            {verse.id}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        );
+
+        const QuizView = ({ config, onFinish }) => {
+            const [qIndex, setQIndex] = React.useState(0);
+            const [score, setScore] = React.useState(0);
+            const [shuffledQuestions, setShuffledQuestions] = React.useState([]);
+            const [timerActive, setTimerActive] = React.useState(false);
+            const [selectedOption, setSelectedOption] = React.useState(null);
+            const [isAnswered, setIsAnswered] = React.useState(false);
+
+            React.useEffect(() => {
+                // Filter first
+                let filtered = questionsData;
+                if(config.type !== 'all') {
+                    filtered = questionsData.filter(q => q.type === config.type);
+                }
+
+                // Shuffle
+                const shuffled = [...filtered].sort(() => 0.5 - Math.random());
+                
+                // Slice based on count (if requested count is larger than available, take all available)
+                const limit = Math.min(config.count, shuffled.length);
+                const finalQuestions = shuffled.slice(0, limit);
+                
+                setShuffledQuestions(finalQuestions);
+                setTimerActive(true);
+            }, [config]);
+
+            const handleOptionClick = (opt) => {
+                if (isAnswered) return;
+                setTimerActive(false);
+                setSelectedOption(opt);
+                setIsAnswered(true);
+
+                if (opt === shuffledQuestions[qIndex].answer) {
+                    setScore(s => s + 1);
+                }
+            };
+
+            const handleTimeUp = () => {
+                if (isAnswered) return;
+                setIsAnswered(true);
+                setTimerActive(false);
+                // No selection, counts as wrong
+            };
+
+            const handleNext = () => {
+                if (qIndex < shuffledQuestions.length - 1) {
+                    setQIndex(prev => prev + 1);
+                    setSelectedOption(null);
+                    setIsAnswered(false);
+                    setTimerActive(true);
+                } else {
+                    onFinish(score, shuffledQuestions.length);
+                }
+            };
+
+            if (shuffledQuestions.length === 0) return <div className="min-h-screen flex items-center justify-center font-bold text-slate-400">Memuat Soal...</div>;
+
+            const currentQ = shuffledQuestions[qIndex];
+            const isLast = qIndex === shuffledQuestions.length - 1;
+
+            return (
+                <div className="min-h-screen flex items-center justify-center p-4 fade-in">
+                    <div className="w-full max-w-2xl">
+                        {/* Header */}
+                        <div className="flex justify-between items-center mb-6">
+                            <div className="text-slate-500 font-bold">
+                                Soal {qIndex + 1} <span className="text-slate-300">/ {shuffledQuestions.length}</span>
+                            </div>
+                            <Timer duration={20} isActive={timerActive} onTimeUp={handleTimeUp} />
+                        </div>
+
+                        {/* Card */}
+                        <div className="card p-8 mb-6 relative overflow-hidden">
+                            {/* Progress bar background hint */}
+                            <div className="absolute top-0 left-0 h-1 bg-primary-500 transition-all duration-300" style={{width: `${((qIndex + 1) / shuffledQuestions.length) * 100}%`}}></div>
+
+                            <div className="flex justify-between items-center mb-4 mt-2">
+                                <span className={`text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider ${currentQ.type === 'nadzom' ? 'bg-secondary-100 text-secondary-500' : 'bg-orange-100 text-orange-500'}`}>
+                                    {currentQ.type === 'nadzom' ? 'Sambung Ayat' : 'Ta\'rif / Definisi'}
+                                </span>
+                            </div>
+
+                            <h3 className="font-arabic text-3xl text-right mb-8 leading-loose" dir="rtl">
+                                {currentQ.question}
+                            </h3>
+
+                            <div className="space-y-3">
+                                {currentQ.options.map((opt, i) => {
+                                    let btnClass = "w-full p-4 rounded-xl text-right font-arabic text-lg border-2 transition-all ";
+                                    
+                                    if (isAnswered) {
+                                        if (opt === currentQ.answer) {
+                                            btnClass += "border-primary-500 bg-primary-100 text-primary-600"; // Correct
+                                        } else if (opt === selectedOption) {
+                                            btnClass += "border-red-400 bg-red-50 text-red-500"; // Wrong selection
+                                        } else {
+                                            btnClass += "border-slate-100 text-slate-400 opacity-50"; // Not selected
+                                        }
+                                    } else {
+                                        btnClass += "border-slate-100 hover:border-primary-500 hover:bg-slate-50 text-slate-700";
+                                    }
+
+                                    return (
+                                        <button 
+                                            key={i} 
+                                            onClick={() => handleOptionClick(opt)}
+                                            className={btnClass}
+                                            dir="rtl"
+                                        >
+                                            {opt}
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        </div>
+
+                        {/* Footer Action */}
+                        {isAnswered && (
+                            <div className="flex justify-end animate-bounce">
+                                <Button onClick={handleNext} className="px-8 shadow-lg">
+                                    {isLast ? "Lihat Hasil" : "Lanjut"} <Icons.Play />
+                                </Button>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            );
+        };
+
+        const ResultView = ({ score, total, onRestart }) => {
+            const percentage = Math.round((score / total) * 100);
+            let message = "Belajar Lagi Yuk!";
+            if(percentage === 100) message = "Mumtaz! Sempurna!";
+            else if(percentage >= 80) message = "Jayyid Jiddan! (Sangat Baik)";
+            else if(percentage >= 60) message = "Jayyid! (Baik)";
             
-            <!-- Konten Modal -->
-            <h2 class="text-2xl font-bold text-white mb-2 font-orbitron">CHECKOUT</h2>
-            <p class="text-neutral-400 mb-4">Item yang akan dibeli: <strong id="modal-product-name" class="text-fuchsia-400"></strong></p>
-            
-            <div class="bg-black/50 rounded-lg p-4 mb-6 border border-neutral-800">
-                <div class="flex justify-between items-center">
-                    <span class="text-neutral-400">Total Pembayaran:</span>
-                    <span id="modal-product-price" class="text-2xl font-bold text-white"></span>
+            return (
+                <div className="min-h-screen flex items-center justify-center p-6 fade-in">
+                    <div className="card w-full max-w-md p-10 text-center">
+                        <div className="mb-6 inline-flex p-4 bg-yellow-100 rounded-full text-yellow-600">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+                        </div>
+                        
+                        <h2 className="text-5xl font-bold text-slate-800 mb-2">{score} / {total}</h2>
+                        <p className="text-xl font-bold text-primary-600 mb-1">{message}</p>
+                        <p className="text-slate-400 mb-8 text-sm">Nilai Akhir Kamu</p>
+
+                        <div className="bg-slate-50 rounded-xl p-4 mb-8">
+                            <div className="w-full bg-slate-200 rounded-full h-2.5 mb-2">
+                                <div className="bg-primary-500 h-2.5 rounded-full transition-all duration-1000" style={{width: `${percentage}%`}}></div>
+                            </div>
+                            <p className="text-sm text-slate-400">{percentage}% Benar</p>
+                        </div>
+
+                        <Button onClick={onRestart} className="w-full">
+                            <Icons.Refresh /> Main Lagi
+                        </Button>
+                    </div>
                 </div>
-            </div>
+            );
+        };
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                <button onclick="selectPaymentMethod('qris')" class="w-full bg-gray-200 text-black font-bold py-3 rounded-lg hover:bg-gray-300 transition-all duration-300 flex items-center justify-center gap-2 payment-method-btn" id="btn-qris">
-                    <i data-lucide="qr-code" class="w-5 h-5"></i>
-                    QRIS
-                </button>
-                <button onclick="selectPaymentMethod('dana')" class="w-full bg-blue-500 text-white font-bold py-3 rounded-lg hover:bg-blue-600 transition-all duration-300 flex items-center justify-center gap-2 payment-method-btn" id="btn-dana">
-                    <i data-lucide="credit-card" class="w-5 h-5"></i>
-                    DANA
-                </button>
-                <button onclick="selectPaymentMethod('im3')" class="w-full bg-yellow-500 text-white font-bold py-3 rounded-lg hover:bg-yellow-600 transition-all duration-300 flex items-center justify-center gap-2 payment-method-btn" id="btn-im3">
-                    <i data-lucide="smartphone" class="w-5 h-5"></i>
-                    IM3
-                </button>
-            </div>
+        // --- MAIN APP ---
 
-            <!-- Detail Pembayaran -->
-            <div id="payment-instructions" class="hidden mt-6">
-                <div id="dana-details" class="payment-details hidden bg-black/50 p-4 rounded-lg border border-neutral-800">
-                    <p class="text-neutral-300">Silakan transfer ke nomor DANA berikut:</p>
-                    <p class="text-xl font-bold text-white mt-2">0815-2848-3575</p>
-                    <p class="text-sm text-neutral-400 mt-1">a/n Hafiz Wirang</p>
-                </div>
-                <div id="qris-details" class="payment-details hidden bg-black/50 p-4 rounded-lg border border-neutral-800 text-center">
-                    <p class="text-neutral-300 mb-2">Belum Tersedia</p>
-                    <img src="" alt="QRIS Code" class="w-48 h-48 mx-auto rounded-lg">
-                </div>
-                <div id="im3-details" class="payment-details hidden bg-black/50 p-4 rounded-lg border border-neutral-800">
-                    <p class="text-neutral-300">Silakan transfer pulsa ke nomor IM3 berikut:</p>
-                    <p class="text-xl font-bold text-white mt-2">0815-2848-3575</p>
-                    <p class="text-neutral-300">kirim bukti ke whatsapp admin</p>
-                </div>
-            </div>
-        </div>
-    </div>
+        const App = () => {
+            const [view, setView] = React.useState('home');
+            const [quizConfig, setQuizConfig] = React.useState(null);
+            const [scoreData, setScoreData] = React.useState({score:0, total:0});
 
-    <!-- Toast Notification -->
-    <div id="toast-notification" class="fixed bottom-5 right-5 bg-red-500 text-white py-2 px-4 rounded-lg shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 z-50">
-        <p id="toast-message"></p>
-    </div>
-    <script src="Base.js" defer></script>
+            return (
+                <>
+                    {view === 'home' && (
+                        <HomeView 
+                            onStart={(config) => { 
+                                setQuizConfig(config); 
+                                setView('quiz'); 
+                            }} 
+                            onHifz={() => setView('hifz')} 
+                        />
+                    )}
+                    
+                    {view === 'quiz' && (
+                        <QuizView 
+                            config={quizConfig}
+                            onFinish={(s, t) => { 
+                                setScoreData({score: s, total: t}); 
+                                setView('result'); 
+                            }} 
+                        />
+                    )}
+                    
+                    {view === 'hifz' && <HifzView onBack={() => setView('home')} />}
+                    
+                    {view === 'result' && (
+                        <ResultView 
+                            score={scoreData.score} 
+                            total={scoreData.total} 
+                            onRestart={() => setView('home')} 
+                        />
+                    )}
+                </>
+            );
+        };
 
-
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
 </body>
 </html>
